@@ -1,0 +1,184 @@
+{
+    "_version": "1.49.0",
+    "sap.app": {
+        "id": "glacc",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:lrop",
+            "version": "1.10.0",
+            "toolsId": "b9fd21ee-63e1-4203-9d73-f8d6565c835e"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/service/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "4.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.115.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.ushell": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "glacc.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            }
+        },
+        "resources": {
+            "css": []
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "GLAccountsList",
+                    "target": "GLAccountsList"
+                },
+                {
+                    "pattern": "GLAccounts({key}):?query:",
+                    "name": "GLAccountsObjectPage",
+                    "target": "GLAccountsObjectPage"
+                },
+                {
+                    "pattern": "GLAccounts({key})/NonGLAccounts({key2}):?query:",
+                    "name": "GLMappedAccountsObjectPage",
+                    "target": "GLMappedAccountsObjectPage"
+                }
+            ],
+            "targets": {
+                "GLAccountsList": {
+                    "type": "Component",
+                    "id": "GLAccountsList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "GLAccounts",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "GLAccounts": {
+                                    "detail": {
+                                        "route": "GLAccountsObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "actions": {
+                                        "downloadExcel": {
+                                            "press": "glacc.ext.controller.DownloadExcel.downloadExcel",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "requiresSelection": false,
+                                            "text": "Download"
+                                        },
+                                        "UploadButton": {
+                                            "press": "glacc.ext.controller.Upload.UploadExcel",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "requiresSelection": false,
+                                            "text": "Upload"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "GLAccountsObjectPage": {
+                    "type": "Component",
+                    "id": "GLAccountsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "GLAccounts",
+                            "navigation": {
+                                "NonGLAccounts": {
+                                    "detail": {
+                                        "route": "GLMappedAccountsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "GLMappedAccountsObjectPage": {
+                    "type": "Component",
+                    "id": "GLMappedAccountsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "GLMappedAccounts"
+                        }
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {}
+            }
+        }
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

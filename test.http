@@ -1,0 +1,79 @@
+
+GET http://localhost:4004/service/GLAccounts
+###
+POST http://localhost:4004/service/GLAccounts
+Content-Type: application/json
+
+{
+    //"ID": "4af0473e-7280-4802-bcb9-fa48e314fc01",
+    "KTOPL": "TPRS",
+    "SAKNR": "3001",
+    "TXT50": "Expense Account",
+    "XBILK": "Expense"
+    //"IsActiveEntity": true,
+    //"HasActiveEntity": false,
+    //"HasDraftEntity": false
+}
+###
+POST  http://localhost:4004/service/GLAccounts(ID=3e7cca17-d976-4c6a-8548-8861211ddd63,IsActiveEntity=false)
+Content-Type: application/json
+
+{
+    //"ID": "5a718739-e832-4384-8d9a-9acdcdf43cde",
+    "KTOPL": "TPRS",
+    "SAKNR": "3002",
+    "TXT50": "Expense Account",
+    "XBILK": "Expense",
+    "IsActiveEntity": true
+    //"HasActiveEntity": false,
+    //"HasDraftEntity": false
+}
+###
+GET http://localhost:4004/service/GLMappedAccounts
+
+###
+POST http://localhost:4004/service/GLMappedAccounts
+Content-Type: application/json
+
+{
+    "ID": "0a8dd6a8-1b5f-402d-a77a-bf59acb6f7b1",
+    "KTOPL_N": "XYZ",
+    "SAKNR_N": "9000",
+    "TXT50_N": "Non-SAP Asset Account",
+    "SOURCE": "External System A",
+    "GLAccount_ID": "fb8e2450-da89-4e8d-894c-d00f2d417be6"
+}
+
+###
+
+POST http://localhost:4004/service/GLAccounts
+Content-Type: application/json
+
+{
+    //"ID": "c1e1ec19-c74d-4623-b65e-d458a2de6945",
+    "KTOPL": "TPRS",
+    "SAKNR": "1000",
+    "TXT50": "Asset Account",
+    "XBILK": "Asset",
+    "DraftAdministrativeData": [
+
+    ],
+    "NonGLAccounts": [
+        {
+        //"ID": "9cdf0da3-5de6-4de6-951a-4f4ba4b62a5g",
+        "KTOPL_N": "1",
+        "SAKNR_N": "1000",
+        "TXT50_N": "X",
+        "SOURCE": null
+        //"GLAccount_ID": "c1e1ec19-c74d-4623-b65e-d458a2de6945"
+        //"IsActiveEntity": true,
+        //"HasActiveEntity": false,
+        //"HasDraftEntity": false
+        }
+    
+    ]
+    //,
+    //"IsActiveEntity": true,
+    //"HasActiveEntity": false,
+    //"HasDraftEntity": false
+}

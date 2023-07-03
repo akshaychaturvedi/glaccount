@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "glacc",
+            "database": "${workspaceFolder:GLAccountApp}/GLAccount.db"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "glacc_initial",
+            "database": "${workspaceFolder:GLAccountApp}/GLAccount.db"
+        }
+    ]
+}
