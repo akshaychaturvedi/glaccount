@@ -8,25 +8,20 @@ module.exports = function (srv) {
 
     const { GLAccounts, GLMappedAccounts } = this.entities
 
+    // Set default data
     this.before('CREATE', GLAccounts, async req => {
         try {
             if (!req.data.KTOPL) {
                 req.data.KTOPL = 'BEPS';
             }
-            
-
-            // dataExists = await SELECT.one.from(GLAccounts).where({"KTOPL":req.data.KTOPL, "SAKNR":req.data.SAKNR});
-
-            // // Check is record already exists
-            // if(typeof dataExists != "undefined") 
-            //     req.error(400, 'Entry already exists')
-
         } catch (error) {
             console.error(error)
         }
     })
 
     srv.on('PUT', "ExcelUpload", async (req, next) => {
+        
+        // Check 
         if (req.data.excel) {
 
             var entity = req.headers.slug;
@@ -55,29 +50,12 @@ module.exports = function (srv) {
                     const sheets = workbook.SheetNames
 
                     for (let i = 0; i < sheets.length; i++) {
-                        const temp = XLSX.utils.sheet_to_json(
-                            workbook.Sheets[workbook.SheetNames[i]])
+                        const temp = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[i]])
                         temp.forEach((res) => {
                             data.push(res)
                         })
                     }
 
-                    // const worksheetData = XLSX.utils.sheet_to_json(worksheet, { header : 1 });
-
-                    // data.push(JSON.parse(JSON.stringify(worksheetData)));
-
-                    // var buffer = Buffer.concat(buffers);
-                    // var workbook = XLSX.read(buffer, { type: "buffer", cellText: true, cellDates: true, dateNF: 'dd"."mm"."yyyy', cellNF: true, rawNumbers: false });
-                    // let data = []
-                    // const sheets = workbook.SheetNames
-                    // for (let i = 0; i < sheets.length; i++) {
-                    //     const temp = XLSX.utils.sheet_to_json(
-                    //         workbook.Sheets[workbook.SheetNames[i]], { cellText: true, cellDates: true, dateNF: 'dd"."mm"."yyyy', rawNumbers: false })
-                    //     temp.forEach((res, index) => {
-                    //         if (index === 0) return;
-                    //         data.push(JSON.parse(JSON.stringify(res)))
-                    //     })
-                    // }
                     if (data) {
                         const responseCall = await CallEntity(entity, data);
                         if (responseCall == -1)
@@ -96,15 +74,7 @@ module.exports = function (srv) {
         }
     });
 
-    // srv.before('POST', 'GLAccounts', async (req) => {
-    //    //Custom validations can be put, if required before upload
-    //    dataExists = await SELECT.one.from(GLAccounts).where({"KTOPL":req.data.KTOPL, "SAKNR":req.data.SAKNR});
-    // });
-
-    // srv.on('POST', 'GLAccounts', async (req) => {
-    //     //return reponse to excel upload entity .
-    // });
-    function checkUnique(row,table) {
+    function rowExists(row,table) {
         
         var glID = '';
 
@@ -113,9 +83,7 @@ module.exports = function (srv) {
                 glID = table[i].ID;                            
             }    
         }
-
         return glID;
-        
     }
 
     async function CallEntity(entity, data) {
@@ -134,7 +102,7 @@ module.exports = function (srv) {
         for (var i = 0; i < data.length; i++)
         {   
             // Check for unique GL Account in the sheet
-            var glID = checkUnique(data[i],GLAccountsData);
+            var glID = rowExists(data[i],GLAccountsData);
             
             // If value is blank, GL Account is unique
             if(glID === ''){
@@ -197,9 +165,5 @@ module.exports = function (srv) {
         }
 
         return GLAccountsData; //returns response to excel upload entity
-
     };
-
-    
-
 }
