@@ -169,6 +169,7 @@ annotate tables.GLAccounts with {
         }
     );
     KTOPL @(
+        readonly,
         Common : {
             ValueList : {
                 $Type : 'Common.ValueListType',
@@ -182,7 +183,6 @@ annotate tables.GLAccounts with {
                 ]
             },
         },
-        Core.Computed : true
     );
     TXT50 @(
         Common : {

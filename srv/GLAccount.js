@@ -11,8 +11,14 @@ module.exports = function (srv) {
     // Set default data
     this.before('CREATE', GLAccounts, async req => {
         try {
-            if (!req.data.KTOPL) {
+            let dataArray = Array.isArray(req.data);
+            if (!dataArray) {
                 req.data.KTOPL = 'BEPS';
+            }
+            else {
+                for (let i = 0; i < req.data.length; i++) {
+                    req.data[i].KTOPL = 'BEPS';
+                }
             }
         } catch (error) {
             console.error(error)
@@ -20,7 +26,7 @@ module.exports = function (srv) {
     })
 
     srv.on('PUT', "ExcelUpload", async (req, next) => {
-        
+         
         // Check 
         if (req.data.excel) {
 
