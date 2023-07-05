@@ -1,11 +1,6 @@
 using {GLAccount.db.tables as tables} from '../db/datamodel';
 
 annotate tables.GLAccounts with @odata.draft.enabled;
-// annotate tables.GLMappings with @odata.draft.enabled;
-
-// annotate tables.GLMappings with @Capabilities : {
-//     Insertable,Updatable,Deletable,
-// };
 
 @cds.odata.valuelist
 annotate tables.GLAccounts with @(UI: {
