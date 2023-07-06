@@ -4,7 +4,7 @@ const { type } = require('os');
 const PassThrough = require('stream').PassThrough;
 const XLSX = require('xlsx');
 
-module.exports = function (srv) {
+module.exports = async function (srv) {
 
     const { GLAccounts, GLMappedAccounts } = this.entities
 
@@ -24,6 +24,38 @@ module.exports = function (srv) {
             console.error(error)
         }
     })
+    //const { COAVH } = this.entities;
+
+    // const db = await cds.connect.to("db");
+    // const {
+    //     COAVH
+    // } = db.entities;
+
+    const db = await cds.connect.to("db");
+    const { GLAccount_db_tables_COAVH } = db.entities;
+
+    this.on("READ", "ChartofAccountsVH", async (req) => {
+        
+        const { GLAccounts, GLMappedAccounts, COAVH } = this.entities
+        const db = await cds.connect.to("db");
+        const { GLAccount_db_tables_COAVH } = db.entities;
+
+        let query = await SELECT.from ('GLAccount_db_tables_COAVH');
+        query.$count = query.length;
+        return query;
+
+        // const { GLAccounts } = cds.entities; 
+        // //const query1 = SELECT.from('COAVH');
+        // let srv = await cds.connect.to('GLAccountService');
+
+        // let selectGLQuery = SELECT.one.from('GLAccounts').where({"KTOPL":"TPRS", "SAKNR":"1000"});
+        // let query2 = SELECT.distinct.from('GLAccounts');     
+        // //let query = await SELECT.one.from('COAVH');
+        // //let selectQuery = await SELECT.distinct.from('GLAccounts').columns('KTOPL');
+        // let selectResult = await srv.run(selectGLQuery);
+        // return selectResult;
+    });
+    
 
     srv.on('PUT', "ExcelUpload", async (req, next) => {
          

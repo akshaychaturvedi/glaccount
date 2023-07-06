@@ -1,11 +1,22 @@
 using {GLAccount.db.tables as tables} from '../db/datamodel';
 
 annotate tables.GLAccounts with @odata.draft.enabled;
-// annotate tables.GLMappings with @odata.draft.enabled;
 
-// annotate tables.GLMappings with @Capabilities : {
-//     Insertable,Updatable,Deletable,
-// };
+// @cds.odata.valuelist
+annotate tables.ChartofAccountsVH with @(UI: {
+    LineItem  : [
+        {
+            $Type: 'UI.DataField',
+            Value: KTOPL,
+        },
+    ],
+    Identification  : [
+        {
+            $Type: 'UI.DataField',
+            Value: KTOPL,
+        },
+    ],
+});
 
 @cds.odata.valuelist
 annotate tables.GLAccounts with @(UI: {
@@ -168,22 +179,23 @@ annotate tables.GLAccounts with {
             },
         }
     );
-    KTOPL @(
-        readonly,
-        Common : {
-            ValueList : {
-                $Type : 'Common.ValueListType',
-                CollectionPath : 'GLAccounts',
-                Parameters : [
-                    {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'KTOPL',
-                    ValueListProperty : 'KTOPL',
-                    },
-                ]
-            },
-        },
-    );
+    // KTOPL @(
+    //     readonly,
+    //     ValueList.entity : 'ChartofAccountsVH',
+    //     // Common : {
+    //     //     ValueList : {
+    //     //         $Type : 'Common.ValueListType',
+    //     //         CollectionPath : 'GLAccounts',
+    //     //         Parameters : [
+    //     //             {
+    //     //             $Type             : 'Common.ValueListParameterInOut',
+    //     //             LocalDataProperty : 'KTOPL',
+    //     //             ValueListProperty : 'KTOPL',
+    //     //             },
+    //     //         ]
+    //     //     },
+    //     // },
+    // );
     TXT50 @(
         Common : {
             ValueList : {
@@ -202,3 +214,18 @@ annotate tables.GLAccounts with {
 
 }
 
+
+annotate tables.GLAccounts with {
+    @Common : {ValueList : {
+    $Type                        : 'Common.ValueListType',
+    CollectionPath               : 'ChartofAccountsVH',
+    PresentationVariantQualifier : 'KTOPL',
+    Parameters                   : [{
+      $Type             : 'Common.ValueListParameterInOut',
+      LocalDataProperty : 'KTOPL',
+      ValueListProperty : 'KTOPL'
+    }]
+  }}
+  KTOPL;
+    // KTOPL @(ValueList.entity : 'ChartofAccountsVH', );
+}

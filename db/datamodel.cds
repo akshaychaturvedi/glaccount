@@ -2,7 +2,6 @@ namespace GLAccount.db;
 
 using {cuid} from '@sap/cds/common';
 
-
 context tables {
 
     entity GLAccounts : cuid {
@@ -12,17 +11,22 @@ context tables {
         XBILK         : String(40) @title  : 'GL Account Type';
         NonGLAccounts : Composition of many GLMappings
                             on NonGLAccounts.GLAccount = $self;
-    //NonGLAccounts : Association to many GLMappings on NonGLAccounts.GLAccount = $self;
-
     }
 
-    //entity GLMappings          @(cds.autoexpose) : cuid {
-    entity GLMappings        : cuid {    
+    entity GLMappings : cuid {
         KTOPL_N   : String(4)  @title: 'Non-SAP Chart of Accounts';
         SAKNR_N   : String(10) @title: 'Non-SAP GL Account';
         TXT50_N   : String(50) @title: 'Non-SAP GL Account Description';
         SOURCE    : String(20) @title: 'Source';
         GLAccount : Association to GLAccounts;
     }
+
+    view COAVH as select distinct KTOPL from GLAccounts;
+    @readonly
+    @cds.odata.valuelist
+    entity ChartofAccountsVH  {
+            key KTOPL : tables.GLAccounts:KTOPL;
+        };
+
 
 }
