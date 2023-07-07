@@ -1,3 +1,4 @@
+// @ts-nocheck
 sap.ui.define(["sap/m/MessageBox", "sap/m/MessageToast", "sap/ui/core/UIComponent"],
     function (MessageBox, MessageToast, UIComponent) {
         "use strict";

@@ -17,6 +17,15 @@ service GLAccountService @(path: '/service') {
     // @cds.odata.valuelist
     // @cds.redirection.target : false
     // entity Foo as select from tables.GLAccounts;
+    // view GLAccountData as select from GLAccounts {
+    //     *,
+    //     NonGLAccounts.KTOPL_N,
+    //     NonGLAccounts.SAKNR_N,
+    //     NonGLAccounts.SOURCE,
+    //     NonGLAccounts.TXT50_N
+    // };
+
+    function downloadExcel() returns String;
 
     entity ChartofAccountsVH as projection on tables.ChartofAccountsVH;
 

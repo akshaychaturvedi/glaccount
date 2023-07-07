@@ -28,5 +28,12 @@ context tables {
             key KTOPL : tables.GLAccounts:KTOPL;
         };
 
+    view GLAccountData as select from GLAccounts {
+       *,
+        NonGLAccounts.KTOPL_N,
+        NonGLAccounts.SAKNR_N,
+        NonGLAccounts.SOURCE,
+        NonGLAccounts.TXT50_N
+    }
 
 }

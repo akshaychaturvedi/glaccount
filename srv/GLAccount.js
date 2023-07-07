@@ -1,3 +1,4 @@
+// @ts-nocheck
 const cds = require('@sap/cds');
 const { randomUUID } = require('crypto');
 const { type } = require('os');
@@ -6,8 +7,13 @@ const XLSX = require('xlsx');
 
 module.exports = async function (srv) {
 
-    const { GLAccounts, GLMappedAccounts } = this.entities
+    const { GLAccounts, GLMappedAccounts, GLAccountData } = this.entities
 
+    this.on('downloadExcel', async req => {
+        let glData = await cds.run( SELECT.from ('GLAccount_db_tables_GLAccountData') );
+        return JSON.stringify(glData);
+    })
+    
     // Set default data
     this.before('CREATE', GLAccounts, async req => {
         try {
