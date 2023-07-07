@@ -1,4 +1,6 @@
 using {GLAccount.db.tables as tables} from '../db/datamodel';
+using { GLAccount.db.cdsviews } from '../db/cdsviews';
+
 
 service GLAccountService @(path: '/service') {
 
@@ -11,23 +13,11 @@ service GLAccountService @(path: '/service') {
         @Core.MediaType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         excel : LargeBinary;
     };
+    
+    // @cds.odata.valuelist
+    // @cds.redirection.target : false
+    // entity Foo as select from tables.GLAccounts;
 
     entity ChartofAccountsVH as projection on tables.ChartofAccountsVH;
-
-    //@odata.draft.enabled : false
-    //entity COAVH @(cds.redirection.target:false) as projection on tables.COAVH;
-
-    // @cds.persistence.skip
-    // @cds.odata.valuelist
-    // define view chartofaccounts as
-    // //entity chartofaccounts  as
-    //     select from GLAccounts distinct {
-    //         key KTOPL
-    //     };
-
-    // annotate chartofaccounts with @UI: {LineItem: [{
-    //     $Type: 'UI.DataField',
-    //     Value: KTOPL,
-    // }, ], };
 
 }

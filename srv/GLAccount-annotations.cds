@@ -179,23 +179,22 @@ annotate tables.GLAccounts with {
             },
         }
     );
-    // KTOPL @(
-    //     readonly,
-    //     ValueList.entity : 'ChartofAccountsVH',
-    //     // Common : {
-    //     //     ValueList : {
-    //     //         $Type : 'Common.ValueListType',
-    //     //         CollectionPath : 'GLAccounts',
-    //     //         Parameters : [
-    //     //             {
-    //     //             $Type             : 'Common.ValueListParameterInOut',
-    //     //             LocalDataProperty : 'KTOPL',
-    //     //             ValueListProperty : 'KTOPL',
-    //     //             },
-    //     //         ]
-    //     //     },
-    //     // },
-    // );
+    KTOPL @(
+        readonly,
+        Common : {
+            ValueList : {
+                $Type : 'Common.ValueListType',
+                CollectionPath : 'ChartofAccountsVH',
+                Parameters : [
+                    {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'KTOPL',
+                    ValueListProperty : 'KTOPL',
+                    },
+                ]
+            },
+        },
+    );
     TXT50 @(
         Common : {
             ValueList : {
@@ -215,17 +214,4 @@ annotate tables.GLAccounts with {
 }
 
 
-annotate tables.GLAccounts with {
-    @Common : {ValueList : {
-    $Type                        : 'Common.ValueListType',
-    CollectionPath               : 'ChartofAccountsVH',
-    PresentationVariantQualifier : 'KTOPL',
-    Parameters                   : [{
-      $Type             : 'Common.ValueListParameterInOut',
-      LocalDataProperty : 'KTOPL',
-      ValueListProperty : 'KTOPL'
-    }]
-  }}
-  KTOPL;
-    // KTOPL @(ValueList.entity : 'ChartofAccountsVH', );
-}
+

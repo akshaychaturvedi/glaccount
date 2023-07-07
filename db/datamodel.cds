@@ -21,7 +21,7 @@ context tables {
         GLAccount : Association to GLAccounts;
     }
 
-    view COAVH as select distinct KTOPL from GLAccounts;
+    view ChartofAccountsView as select distinct KTOPL from GLAccounts;
     @readonly
     @cds.odata.valuelist
     entity ChartofAccountsVH  {
