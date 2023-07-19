@@ -13,20 +13,13 @@ service GLAccountService @(path: '/service') {
         @Core.MediaType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         excel : LargeBinary;
     };
-    
-    // @cds.odata.valuelist
-    // @cds.redirection.target : false
-    // entity Foo as select from tables.GLAccounts;
-    // view GLAccountData as select from GLAccounts {
-    //     *,
-    //     NonGLAccounts.KTOPL_N,
-    //     NonGLAccounts.SAKNR_N,
-    //     NonGLAccounts.SOURCE,
-    //     NonGLAccounts.TXT50_N
-    // };
 
     function downloadExcel() returns String;
 
     entity ChartofAccountsVH as projection on tables.ChartofAccountsVH;
+
+    entity NonChartofAccountsVH as projection on tables.NonChartofAccountsVH;
+
+    entity GLAccountTypesVH as projection on tables.GLAccountTypesVH;
 
 }

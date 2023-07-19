@@ -38,6 +38,14 @@ module.exports = async function (srv) {
         return query;
 
     });
+
+    this.on("READ", "NonChartofAccountsVH", async (req) => {
+        
+        let query = await SELECT.from ('GLAccount_db_tables_NonChartofAccountsView');
+        query.$count = query.length;
+        return query;
+
+    });
     
 
     srv.on('PUT', "ExcelUpload", async (req, next) => {

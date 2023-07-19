@@ -22,18 +22,39 @@ context tables {
     }
 
     view ChartofAccountsView as select distinct KTOPL from GLAccounts;
+
     @readonly
     @cds.odata.valuelist
-    entity ChartofAccountsVH  {
-            key KTOPL : tables.GLAccounts:KTOPL;
-        };
+    entity ChartofAccountsVH {
+        key KTOPL : tables.GLAccounts:KTOPL;
+    };
 
-    view GLAccountData as select from GLAccounts {
-       *,
-        NonGLAccounts.KTOPL_N,
-        NonGLAccounts.SAKNR_N,
-        NonGLAccounts.SOURCE,
-        NonGLAccounts.TXT50_N
+    view NonChartofAccountsView as
+        select distinct
+            KTOPL,
+            SAKNR,
+            NonGLAccounts.KTOPL_N
+        from GLAccounts;
+
+    entity GLAccountTypesVH : cuid {
+        XBILK         : String(40) @title  : 'GL Account Type';
     }
+
+    @readonly
+    @cds.odata.valuelist
+    entity NonChartofAccountsVH {
+        key KTOPL   : tables.GLAccounts:KTOPL;
+        key SAKNR   : tables.GLAccounts:SAKNR;
+            KTOPL_N : tables.GLMappings:KTOPL_N;
+    };
+
+    view GLAccountData as
+        select from GLAccounts {
+            *,
+            NonGLAccounts.KTOPL_N,
+            NonGLAccounts.SAKNR_N,
+            NonGLAccounts.SOURCE,
+            NonGLAccounts.TXT50_N
+        };
 
 }

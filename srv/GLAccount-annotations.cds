@@ -18,6 +18,16 @@ annotate tables.ChartofAccountsVH with @(UI: {
     ],
 });
 
+annotate tables.NonChartofAccountsVH with @(UI: {
+    
+    Identification  : [
+        {
+            $Type: 'UI.DataField',
+            Value: KTOPL_N,
+        },
+    ],
+});
+
 @cds.odata.valuelist
 annotate tables.GLAccounts with @(UI: {
     
@@ -52,7 +62,8 @@ annotate tables.GLAccounts with @(UI: {
     SelectionFields: [
         KTOPL,
         SAKNR,
-        TXT50
+        NonGLAccounts.KTOPL_N,
+        XBILK
     ],
 
     LineItem       : [
@@ -209,9 +220,46 @@ annotate tables.GLAccounts with {
                 ]
             },
         }
+    );
+    XBILK @(
+        Common  :{
+            ValueListWithFixedValues,
+            ValueList : {
+                $Type : 'Common.ValueListType',
+                CollectionPath : 'GLAccountTypesVH',
+                Parameters : [{
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : XBILK,
+                    ValueListProperty : 'XBILK',
+                }]
+            },
+        }
     )
-
 }
+
+annotate tables.GLMappings with {
+    KTOPL_N @(
+        Common : {
+            ValueList : {
+                $Type : 'Common.ValueListType',
+                CollectionPath : 'NonChartofAccountsVH',
+                Parameters : [
+                    {
+                    $Type             : 'Common.ValueListParameterFilterOnly',
+                    ValueListProperty : 'SAKNR',
+                    },
+                    {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : 'KTOPL_N',
+                    ValueListProperty : 'KTOPL_N',
+                    },
+                ]
+            },
+        }
+        
+    )
+};
+
 
 
 
