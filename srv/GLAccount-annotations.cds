@@ -244,10 +244,10 @@ annotate tables.GLMappings with {
                 $Type : 'Common.ValueListType',
                 CollectionPath : 'NonChartofAccountsVH',
                 Parameters : [
-                    {
-                    $Type             : 'Common.ValueListParameterFilterOnly',
-                    ValueListProperty : 'SAKNR',
-                    },
+                    // {
+                    // $Type             : 'Common.ValueListParameterFilterOnly',
+                    // ValueListProperty : 'SAKNR',
+                    // },
                     {
                     $Type             : 'Common.ValueListParameterInOut',
                     LocalDataProperty : 'KTOPL_N',

@@ -1,3 +1,3 @@
-KTOPL_N,SAKNR_N,TXT50_N,SOURCE
-XYZ,9000,Non-SAP Asset Account,External System A
-XYZ,9500,Non-SAP Expense Account,External System B
+ID,KTOPL_N,SAKNR_N,TXT50_N,SOURCE,GLAccount_ID
+8d8801ef-04d0-42a2-b429-b0d5529b6602,XYZ,9000,Non-SAP Asset Account,External System A,8d8801ef-04d0-42a2-b429-b0d5529b6601
+8d8801ef-04d0-42a2-b429-b0d5529b6603,XYZ,9500,Non-SAP Expense Account,External System B,8d8801ef-04d0-42a2-b429-b0d5529b6601

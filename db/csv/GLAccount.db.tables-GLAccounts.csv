@@ -1,4 +1,4 @@
-KTOPL,SAKNR,TXT50,XBILK
-TPRS,1000,Asset Account,Asset
-TPRS,2000,Revenue Account,Revenue
-TPRS,3000,Expense Account,Expense
+ID,KTOPL,SAKNR,TXT50,XBILK
+8d8801ef-04d0-42a2-b429-b0d5529b6601,TPRS,1000,Asset Account,Asset
+cecde697-c2df-49f9-974b-dae5111c72ad,TPRS,2000,Revenue Account,Revenue
+147a8fb7-aab2-44c7-9243-2e5a274f156c,TPRS,3000,Expense Account,Expense

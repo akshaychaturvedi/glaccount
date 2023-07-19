@@ -31,13 +31,13 @@ context tables {
 
     view NonChartofAccountsView as
         select distinct
-            KTOPL,
-            SAKNR,
+            //KTOPL,
+            //SAKNR,
             NonGLAccounts.KTOPL_N
         from GLAccounts;
 
     entity GLAccountTypesVH : cuid {
-        XBILK         : String(40) @title  : 'GL Account Type';
+        XBILK : tables.GLAccounts:XBILK;
     }
 
     @readonly
