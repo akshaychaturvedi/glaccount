@@ -19,11 +19,11 @@ module.exports = async function (srv) {
         try {
             let dataArray = Array.isArray(req.data);
             if (!dataArray) {
-                req.data.KTOPL = 'BEPS';
+                req.data.chartOfAccounts = 'BEPS';
             }
             else {
                 for (let i = 0; i < req.data.length; i++) {
-                    req.data[i].KTOPL = 'BEPS';
+                    req.data[i].chartOfAccounts = 'BEPS';
                 }
             }
         } catch (error) {
@@ -39,9 +39,9 @@ module.exports = async function (srv) {
 
     });
 
-    this.on("READ", "NonChartofAccountsVH", async (req) => {
+    this.on("READ", "SourceChartofAccountsVH", async (req) => {
         
-        let query = await SELECT.from ('GLAccount_db_tables_NonChartofAccountsView');
+        let query = await SELECT.from ('GLAccount_db_tables_SourceChartofAccountsView');
         query.$count = query.length;
         return query;
 
@@ -108,7 +108,7 @@ module.exports = async function (srv) {
         var glID = '';
 
         for (var i = 0; i < table.length; i++) {
-            if (row.KTOPL == table[i].KTOPL && row.SAKNR == table[i].SAKNR) {
+            if (row.chartOfAccounts == table[i].chartOfAccounts && row.glaccount == table[i].glaccount) {
                 glID = table[i].ID;                            
             }    
         }
@@ -140,14 +140,14 @@ module.exports = async function (srv) {
 
                 var GLAccount = {
                     "ID" : GLAccountID,
-                    "KTOPL" : data[i].KTOPL,
-                    "SAKNR" : data[i].SAKNR,
-                    "TXT50" : data[i].TXT50,
-                    "XBILK" : data[i].XBILK
+                    "chartOfAccounts" : data[i].chartOfAccounts,
+                    "glaccount" : data[i].glaccount,
+                    "descr" : data[i].descr,
+                    "accountType" : data[i].accountType
                 } 
 
                 // Check in DB if the GL Account exists
-                let selectGLQuery = SELECT.one.from('GLAccounts').where({"KTOPL":GLAccount.KTOPL, "SAKNR":GLAccount.SAKNR});
+                let selectGLQuery = SELECT.one.from('GLAccounts').where({"KTOPL":GLAccount.chartOfAccounts, "SAKNR":GLAccount.glaccount});
                 let selectGLResult = await srv.run(selectGLQuery);
                 
                 // If record found in DB, do not create a new GL Account
@@ -162,22 +162,22 @@ module.exports = async function (srv) {
                 GLAccountID = glID;
             }
             
-            var NonGLAccount = {
-                "ID" : randomUUID(),
-                "KTOPL_N" : data[i].KTOPL_N,
-                "SAKNR_N" : data[i].SAKNR_N,
-                "TXT50_N" : data[i].TXT50_N,
-                "XBILK_N" : data[i].XBILK_N,
-                "GLAccount_ID" : GLAccountID
-            }   
-            
-            // Check in DB if the Non GL Account exists
-            let selectNonGLQuery = SELECT.one.from('GLMappedAccounts').where({"KTOPL_N":NonGLAccount.KTOPL_N, "SAKNR_N":NonGLAccount.SAKNR_N, "GLAccount_ID":NonGLAccount.GLAccount_ID});
-            let selectNonGLResult = await srv.run(selectNonGLQuery);
+            var SourceGLAccount = {
+                "ID": randomUUID(),
+                "sourceChartOfAccounts": data[i].sourceChartOfAccounts,
+                "sourceGLAccount": data[i].sourceGLAccount,
+                "sourceDescr": data[i].sourceDescr,
+                "source": data[i].source,
+                "glaccount_ID": GLAccountID
+            }
+
+            // Check in DB if the Source GL Account exists
+            let selectSourceGLQuery = SELECT.one.from('GLMappings').where({ "sourceChartOfAccounts": SourceGLAccount.sourceChartOfAccounts, "sourceGLAccount": SourceGLAccount.sourceGLAccount, "glaccount_ID": SourceGLAccount.glaccount_ID });
+            let selectSourceGLResult = await srv.run(selectSourceGLQuery);
 
             // If record found in DB, do not create a new GL Account
-            if (!selectNonGLResult) {
-                NonGLAccountsData.push(NonGLAccount);
+            if (!selectSourceGLResult) {
+                SourceGLAccountsData.push(SourceGLAccount);
             }
         }
 
@@ -187,9 +187,9 @@ module.exports = async function (srv) {
             const insertResult = await srv.run(insertQuery);
         }
         
-        // Execute INSERT query for Non GL Account 
-        if (NonGLAccountsData.length) {
-            const insertQuery2 = INSERT.into('GLMappedAccounts').entries(NonGLAccountsData);
+        // Execute INSERT query for Source GL Account 
+        if (SourceGLAccountsData.length) {
+            const insertQuery2 = INSERT.into('GLMappedAccounts').entries(SourceGLAccountsData);
             const insertResult2 = await srv.run(insertQuery2);
         }
 

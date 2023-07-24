@@ -11,14 +11,14 @@ sap.ui.define([
     var fileName = "GLAccountMapping.xlsx";
 
     let aCols = [
-      { label: "KTOPL", property: "KTOPL" },
-      { label: "SAKNR", property: "SAKNR" },
-      { label: "TXT50", property: "TXT50" },
-      { label: "XBILK", property: "XBILK" },
-      { label: "KTOPL_N", property: "KTOPL_N" },
-      { label: "SAKNR_N", property: "SAKNR_N" },
-      { label: "SOURCE", property: "SOURCE" },
-      { label: "TXT50_N", property: "TXT50_N" }
+      { label: "ChartOfAccounts", property: "chartOfAccounts" },
+      { label: "GLAccount", property: "glaccount" },
+      { label: "Description", property: "descr" },
+      { label: "AccountType", property: "accountType" },
+      { label: "SourceChartOfAccounts", property: "sourceChartOfAccounts" },
+      { label: "SourceGLAccount", property: "sourceGLAccount" },
+      { label: "SourceDescription", property: "sourceDescr" },
+      { label: "Source", property: "source" }
     ];
 
     var oSettings = {

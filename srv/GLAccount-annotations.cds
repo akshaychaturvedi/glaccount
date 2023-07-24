@@ -2,46 +2,62 @@ using {GLAccount.db.tables as tables} from '../db/datamodel';
 
 annotate tables.GLAccounts with @odata.draft.enabled;
 
-// @cds.odata.valuelist
 annotate tables.ChartofAccountsVH with @(UI: {
     LineItem  : [
         {
             $Type: 'UI.DataField',
-            Value: KTOPL,
+            Value: chartOfAccounts,
         },
     ],
     Identification  : [
         {
             $Type: 'UI.DataField',
-            Value: KTOPL,
+            Value: chartOfAccounts,
         },
     ],
 });
 
-annotate tables.NonChartofAccountsVH with @(UI: {
+annotate tables.SourceChartofAccountsVH with @(UI: {
     
     Identification  : [
         {
             $Type: 'UI.DataField',
-            Value: KTOPL_N,
+            Value: sourceChartOfAccounts,
         },
     ],
 });
 
 @cds.odata.valuelist
 annotate tables.GLAccounts with @(UI: {
-    
+
+    PresentationVariant  : {
+        $Type : 'UI.PresentationVariantType',        
+        Visualizations : [
+            '@UI.LineItem',
+        ],
+        SortOrder : [
+            {
+                $Type : 'Common.SortOrderType',
+                Property : glaccount, 
+            },
+            {
+                $Type : 'Common.SortOrderType',
+                Property : chartOfAccounts,
+            }
+        ],
+    },
+
     HeaderInfo     : {
         $Type         : 'UI.HeaderInfoType',
         TypeName      : 'GL Account',
         TypeNamePlural: 'GL Accounts',
         Title         : {
             Label: 'GL Account',
-            Value: SAKNR
+            Value: glaccount
         },
         Description   : {
             Label: 'GL Account Text',
-            Value: TXT50
+            Value: descr
         }
     },
 
@@ -54,62 +70,74 @@ annotate tables.GLAccounts with @(UI: {
         },
         {
             $Type : 'UI.ReferenceFacet',
-            Target: 'NonGLAccounts/@UI.LineItem',
+            Target: 'sourceAccounts/@UI.LineItem',
             Label : 'Mapped GL Accounts'
         },
     ],
 
     SelectionFields: [
-        KTOPL,
-        SAKNR,
-        NonGLAccounts.KTOPL_N,
-        XBILK
+        chartOfAccounts,
+        glaccount,
+        sourceAccounts.sourceChartOfAccounts,
+        accountType
     ],
 
     LineItem       : [
         {
             $Type                : 'UI.DataField',
-            Value                : KTOPL,
+            Value                : chartOfAccounts,
             ![@HTML5.CssDefaults]: {
                 $Type: 'HTML5.CssDefaultsType',
-                width: '10rem',
+                width: '20rem',
             },
         },
         {
             $Type: 'UI.DataField',
-            Value: SAKNR,
+            Value: glaccount,
+            ![@HTML5.CssDefaults]: {
+                $Type: 'HTML5.CssDefaultsType',
+                width: '20rem',
+            },
         },
         {
             $Type: 'UI.DataField',
-            Value: TXT50,
+            Value: descr,
+            ![@HTML5.CssDefaults]: {
+                $Type: 'HTML5.CssDefaultsType',
+                width: '20rem',
+            },
         },
         {
             $Type: 'UI.DataField',
-            Value: XBILK,
+            Value: accountType,
+            ![@HTML5.CssDefaults]: {
+                $Type: 'HTML5.CssDefaultsType',
+                width: '20rem',
+            },
         },
     ],
 
     Identification : [
         {
             $Type: 'UI.DataField',
-            Value: KTOPL,
+            Value: chartOfAccounts,
         },
         {
             $Type: 'UI.DataField',
-            Value: SAKNR,
+            Value: glaccount,
         },
         {
             $Type: 'UI.DataField',
-            Value: TXT50,
+            Value: descr,
         },
         {
             $Type: 'UI.DataField',
-            Value: XBILK,
+            Value: accountType,
         },
     ],
 });
 
-annotate tables.GLMappings with @(UI: {
+annotate tables.SourceGLAccounts with @(UI: {
 
     HeaderInfo            : {
         $Type         : 'UI.HeaderInfoType',
@@ -117,11 +145,11 @@ annotate tables.GLMappings with @(UI: {
         TypeNamePlural: 'Non SAP GL Accounts',
         Title         : {
             Label: 'GL Account',
-            Value: SAKNR_N
+            Value: sourceGLAccount
         },
         Description   : {
             Label: 'GL Account Text',
-            Value: TXT50_N
+            Value: sourceDescr
         }
     },
 
@@ -133,7 +161,7 @@ annotate tables.GLMappings with @(UI: {
     LineItem              : [
         {
             $Type                : 'UI.DataField',
-            Value                : KTOPL_N,
+            Value                : sourceChartOfAccounts,
             ![@HTML5.CssDefaults]: {
                 $Type: 'HTML5.CssDefaultsType',
                 width: '10rem',
@@ -141,36 +169,36 @@ annotate tables.GLMappings with @(UI: {
         },
         {
             $Type: 'UI.DataField',
-            Value: SAKNR_N,
+            Value: sourceGLAccount,
         },
         {
             $Type: 'UI.DataField',
-            Value: TXT50_N,
+            Value: sourceDescr,
         },
         {
             $Type: 'UI.DataField',
-            Value: SOURCE,
+            Value: source,
         },
     ],
 
     Identification #ItemID: [
         {
             $Type: 'UI.DataField',
-            Value: KTOPL_N,
+            Value: sourceChartOfAccounts,
         },
         {
             $Type: 'UI.DataField',
-            Value: SAKNR_N,
+            Value: sourceGLAccount,
         },
         {
             $Type: 'UI.DataField',
-            Value: TXT50_N,
+            Value: sourceDescr,
         }
     ],
 });
 
 annotate tables.GLAccounts with {
-    SAKNR @(
+    glaccount @(
         Common : {
             ValueList : {
                 $Type : 'Common.ValueListType',
@@ -178,19 +206,19 @@ annotate tables.GLAccounts with {
                 Parameters : [
                     {
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'SAKNR',
-                    ValueListProperty : 'SAKNR',
+                    LocalDataProperty : 'glaccount',
+                    ValueListProperty : 'glaccount',
                     },
                     {
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'TXT50',
-                    ValueListProperty : 'TXT50',
+                    LocalDataProperty : 'descr',
+                    ValueListProperty : 'descr',
                     },
                 ]
             },
         }
     );
-    KTOPL @(
+    chartOfAccounts @(
         readonly,
         Common : {
             ValueList : {
@@ -199,14 +227,14 @@ annotate tables.GLAccounts with {
                 Parameters : [
                     {
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'KTOPL',
-                    ValueListProperty : 'KTOPL',
+                    LocalDataProperty : 'chartOfAccounts',
+                    ValueListProperty : 'chartOfAccounts',
                     },
                 ]
             },
         },
     );
-    TXT50 @(
+    descr @(
         Common : {
             ValueList : {
                 $Type : 'Common.ValueListType',
@@ -214,14 +242,14 @@ annotate tables.GLAccounts with {
                 Parameters : [
                     {
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'TXT50',
-                    ValueListProperty : 'TXT50',
+                    LocalDataProperty : 'descr',
+                    ValueListProperty : 'descr',
                     },
                 ]
             },
         }
     );
-    XBILK @(
+    accountType @(
         Common  :{
             ValueListWithFixedValues,
             ValueList : {
@@ -229,29 +257,25 @@ annotate tables.GLAccounts with {
                 CollectionPath : 'GLAccountTypesVH',
                 Parameters : [{
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : XBILK,
-                    ValueListProperty : 'XBILK',
+                    LocalDataProperty : 'accountType',
+                    ValueListProperty : 'accountType',
                 }]
             },
         }
     )
 }
 
-annotate tables.GLMappings with {
-    KTOPL_N @(
+annotate tables.SourceGLAccounts with {
+    sourceChartOfAccounts @(
         Common : {
             ValueList : {
                 $Type : 'Common.ValueListType',
-                CollectionPath : 'NonChartofAccountsVH',
+                CollectionPath : 'SourceChartofAccountsVH',
                 Parameters : [
-                    // {
-                    // $Type             : 'Common.ValueListParameterFilterOnly',
-                    // ValueListProperty : 'SAKNR',
-                    // },
                     {
                     $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'KTOPL_N',
-                    ValueListProperty : 'KTOPL_N',
+                    LocalDataProperty : 'sourceChartOfAccounts',
+                    ValueListProperty : 'sourceChartOfAccounts',
                     },
                 ]
             },

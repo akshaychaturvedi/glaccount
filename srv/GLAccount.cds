@@ -5,7 +5,7 @@ using { GLAccount.db.cdsviews } from '../db/cdsviews';
 service GLAccountService @(path: '/service') {
 
     entity GLAccounts       as projection on tables.GLAccounts;
-    entity GLMappedAccounts as projection on tables.GLMappings;
+    entity SourceGLAccounts as projection on tables.SourceGLAccounts;
 
     @cds.persistence.skip
     @odata.singleton
@@ -18,7 +18,7 @@ service GLAccountService @(path: '/service') {
 
     entity ChartofAccountsVH as projection on tables.ChartofAccountsVH;
 
-    entity NonChartofAccountsVH as projection on tables.NonChartofAccountsVH;
+    entity SourceChartofAccountsVH as projection on tables.SourceChartofAccountsVH;
 
     entity GLAccountTypesVH as projection on tables.GLAccountTypesVH;
 
