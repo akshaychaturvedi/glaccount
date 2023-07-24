@@ -108,7 +108,7 @@ module.exports = async function (srv) {
         var glID = '';
 
         for (var i = 0; i < table.length; i++) {
-            if (row.chartOfAccounts == table[i].chartOfAccounts && row.glaccount == table[i].glaccount) {
+            if (row.ChartOfAccounts == table[i].chartOfAccounts && row.GLAccount == table[i].glaccount) {
                 glID = table[i].ID;                            
             }    
         }
@@ -119,10 +119,10 @@ module.exports = async function (srv) {
 
         // Table Declarations
         var GLAccountsData = [];
-        var NonGLAccountsData = [];
+        var SourceGLAccountsData = [];
 
         // Entity Declarations
-        const { GLAccounts, GLMappedAccounts } = cds.entities;
+        const { GLAccounts, SourceGLAccounts } = cds.entities;
         
         // Establish connection to the service
         let srv = await cds.connect.to('GLAccountService');
@@ -140,14 +140,14 @@ module.exports = async function (srv) {
 
                 var GLAccount = {
                     "ID" : GLAccountID,
-                    "chartOfAccounts" : data[i].chartOfAccounts,
-                    "glaccount" : data[i].glaccount,
-                    "descr" : data[i].descr,
-                    "accountType" : data[i].accountType
+                    "chartOfAccounts" : data[i].ChartOfAccounts,
+                    "glaccount" : data[i].GLAccount,
+                    "descr" : data[i].Description,
+                    "accountType" : data[i].AccountType
                 } 
 
                 // Check in DB if the GL Account exists
-                let selectGLQuery = SELECT.one.from('GLAccounts').where({"KTOPL":GLAccount.chartOfAccounts, "SAKNR":GLAccount.glaccount});
+                let selectGLQuery = SELECT.one.from('GLAccounts').where({"chartOfAccounts":GLAccount.chartOfAccounts, "glaccount":GLAccount.glaccount});
                 let selectGLResult = await srv.run(selectGLQuery);
                 
                 // If record found in DB, do not create a new GL Account
@@ -164,15 +164,15 @@ module.exports = async function (srv) {
             
             var SourceGLAccount = {
                 "ID": randomUUID(),
-                "sourceChartOfAccounts": data[i].sourceChartOfAccounts,
-                "sourceGLAccount": data[i].sourceGLAccount,
-                "sourceDescr": data[i].sourceDescr,
-                "source": data[i].source,
+                "sourceChartOfAccounts": data[i].SourceChartOfAccounts,
+                "sourceGLAccount": data[i].SourceGLAccount,
+                "sourceDescr": data[i].SourceDescription,
+                "source": data[i].Source,
                 "glaccount_ID": GLAccountID
             }
 
             // Check in DB if the Source GL Account exists
-            let selectSourceGLQuery = SELECT.one.from('GLMappings').where({ "sourceChartOfAccounts": SourceGLAccount.sourceChartOfAccounts, "sourceGLAccount": SourceGLAccount.sourceGLAccount, "glaccount_ID": SourceGLAccount.glaccount_ID });
+            let selectSourceGLQuery = SELECT.one.from('SourceGLAccounts').where({ "sourceChartOfAccounts": SourceGLAccount.sourceChartOfAccounts, "sourceGLAccount": SourceGLAccount.sourceGLAccount, "glaccount_ID": SourceGLAccount.glaccount_ID });
             let selectSourceGLResult = await srv.run(selectSourceGLQuery);
 
             // If record found in DB, do not create a new GL Account
@@ -189,7 +189,7 @@ module.exports = async function (srv) {
         
         // Execute INSERT query for Source GL Account 
         if (SourceGLAccountsData.length) {
-            const insertQuery2 = INSERT.into('GLMappedAccounts').entries(SourceGLAccountsData);
+            const insertQuery2 = INSERT.into('SourceGLAccounts').entries(SourceGLAccountsData);
             const insertResult2 = await srv.run(insertQuery2);
         }
 
