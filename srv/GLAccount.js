@@ -33,6 +33,9 @@ module.exports = async function (srv) {
 
     this.on("READ", "ChartofAccountsVH", async (req) => {
         
+
+        let testquery = await SELECT.one `CHARTOFACCOUNTS as chartOfAccounts` .from ('GLAccount_db_tables_ChartofAccountsView');
+
         let query = await SELECT.from ('GLAccount_db_tables_ChartofAccountsView');
         query.$count = query.length;
         return query;

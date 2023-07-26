@@ -57,7 +57,6 @@ sap.ui.define([
         }
       );
 
-      MessageToast.show("Custom handler invoked.");
     }
   };
 });

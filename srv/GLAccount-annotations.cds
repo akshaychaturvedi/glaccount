@@ -199,6 +199,7 @@ annotate tables.SourceGLAccounts with @(UI: {
 
 annotate tables.GLAccounts with {
     glaccount @(
+        mandatory,
         Common : {
             ValueList : {
                 $Type : 'Common.ValueListType',
@@ -210,8 +211,7 @@ annotate tables.GLAccounts with {
                     ValueListProperty : 'glaccount',
                     },
                     {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'descr',
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty : 'descr',
                     },
                 ]
@@ -233,21 +233,6 @@ annotate tables.GLAccounts with {
                 ]
             },
         },
-    );
-    descr @(
-        Common : {
-            ValueList : {
-                $Type : 'Common.ValueListType',
-                CollectionPath : 'GLAccounts',
-                Parameters : [
-                    {
-                    $Type             : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : 'descr',
-                    ValueListProperty : 'descr',
-                    },
-                ]
-            },
-        }
     );
     accountType @(
         Common  :{

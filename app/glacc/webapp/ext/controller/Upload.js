@@ -119,7 +119,7 @@ sap.ui.define(["sap/m/MessageBox", "sap/m/MessageToast", "sap/ui/core/UIComponen
             UploadExcel: function (oBindingContext, aSelectedContexts) {
                 this.loadFragment({
                     id: "excelUploadDialog",
-                    name: "glacc.ext.controller.ExcelUploadDialog",
+                    name: "glacc.ext.fragment.ExcelUploadDialog",
                     controller: _createUploadController(this, 'GLAccounts')
                 }).then(function (oDialog) {
                     oDialog.open();
