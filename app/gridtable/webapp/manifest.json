@@ -118,12 +118,7 @@
                                     "tableSettings": {
                                         "type": "GridTable",
                                         "selectionMode": "None",
-                                        "frozenColumnCount" : 2
-                                    },
-                                    "columns": {
-                                        "DataField::name": {
-                                            "enableColumnFreeze": true
-                                        }
+                                        "frozenColumnCount": 2
                                     }
                                 }
                             },
