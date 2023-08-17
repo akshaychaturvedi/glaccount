@@ -1,0 +1,143 @@
+<mvc:View controllerName="tbupload.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+
+    <f:DynamicPage id="mainPage" headerExpanded="true" toggleHeaderOnTitleClick="true">
+
+        <!-- DynamicPage Title -->
+        <f:title>
+            <f:DynamicPageTitle id="pageTitle">
+                <f:heading>
+                    <Title id="headerTitle" text="Non TB Upload"></Title>
+                </f:heading>
+                <f:actions>
+                    <Button id="downloadTemplate" press="onPressDownloadTemplate" type="Emphasized" text="Download Template"></Button>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <!-- DynamicPage Header -->
+        <f:header>
+            <f:DynamicPageHeader id="pageHeader">
+                <layout:HorizontalLayout id = "headerLayout" class="sapUiResponsiveContentPadding">
+                    <u:FileUploader id="fileUploader" name="UploadedFile" uploadUrl="../../service/ExcelUpload/excel" tooltip="" uploadComplete="handleUploadComplete" fileType="xlsx" multiple="false" useMultipart="true" sendXHR="false" httpRequestMethod="Put"/>
+                    <Button id="previewButton" text="Preview Data" press="onPressPreview"/>
+                </layout:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <!-- DynamicPage Content -->
+        <f:content>
+            <Table id="previewTable" class="sapFDynamicPageAlignContent" width="auto">
+                <headerToolbar>
+                    <OverflowToolbar id="tableToolbar">
+                        <Title id="tableTitle" text="Data Preview"></Title>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Company Code" />
+                    </Column>
+                    <Column>
+                        <Text text="Year" />
+                    </Column>
+                    <Column>
+                        <Text text="Ledger" />
+                    </Column>
+                    <Column>
+                        <Text text="GL Account" />
+                    </Column>
+                    <Column>
+                        <Text text="Period" />
+                    </Column>
+                    <Column>
+                        <Text text="Local Currency" />
+                    </Column>
+                    <Column>
+                        <Text text="Global Currency" />
+                    </Column>
+                    <Column>
+                        <Text text="Source" />
+                    </Column>
+                    <Column>
+                        <Text text="Profit Center" />
+                    </Column>
+                    <Column>
+                        <Text text="Cost Center" />
+                    </Column>
+                    <Column>
+                        <Text text="Business Area" />
+                    </Column>
+                    <Column>
+                        <Text text="Division" />
+                    </Column>
+                    <Column>
+                        <Text text="Functional Area" />
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="Chart of Accounts" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem >
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                        <cells>
+                            <Text text="abcd" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+
+        <!-- DynamicPage Footer -->
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button type="Default" text="Save"/>
+            </OverflowToolbar>
+        </f:footer>
+
+    </f:DynamicPage>
+
+</mvc:View>

@@ -82,40 +82,43 @@ annotate tables.GLAccounts with @(UI: {
         accountType
     ],
 
-    LineItem       : [
-        {
-            $Type                : 'UI.DataField',
-            Value                : chartOfAccounts,
-            ![@HTML5.CssDefaults]: {
-                $Type: 'HTML5.CssDefaultsType',
-                width: '20rem',
+    LineItem       : {
+        ![@UI.Criticality] : 1,    
+        $value: [
+            {
+                $Type                : 'UI.DataField',
+                Value                : chartOfAccounts,
+                ![@HTML5.CssDefaults]: {
+                    $Type: 'HTML5.CssDefaultsType',
+                    width: '20rem',
+                },
             },
-        },
-        {
-            $Type: 'UI.DataField',
-            Value: glaccount,
-            ![@HTML5.CssDefaults]: {
-                $Type: 'HTML5.CssDefaultsType',
-                width: '20rem',
+            {
+                $Type: 'UI.DataField',
+                Value: glaccount,
+                ![@HTML5.CssDefaults]: {
+                    $Type: 'HTML5.CssDefaultsType',
+                    width: '20rem',
+                },
             },
-        },
-        {
-            $Type: 'UI.DataField',
-            Value: descr,
-            ![@HTML5.CssDefaults]: {
-                $Type: 'HTML5.CssDefaultsType',
-                width: '20rem',
+            {
+                $Type: 'UI.DataField',
+                Value: descr,
+                ![@HTML5.CssDefaults]: {
+                    $Type: 'HTML5.CssDefaultsType',
+                    width: '20rem',
+                },
             },
-        },
-        {
-            $Type: 'UI.DataField',
-            Value: accountType,
-            ![@HTML5.CssDefaults]: {
-                $Type: 'HTML5.CssDefaultsType',
-                width: '20rem',
+            {
+                $Type: 'UI.DataField',
+                Value: accountType,
+                ![@HTML5.CssDefaults]: {
+                    $Type: 'HTML5.CssDefaultsType',
+                    width: '20rem',
+                },
             },
-        },
-    ],
+        ]
+    },
 
     Identification : [
         {

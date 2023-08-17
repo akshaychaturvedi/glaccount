@@ -1,0 +1,11 @@
+<mvc:View controllerName="tbupload.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+    xmlns:u="sap.ui.unified">
+    
+    <App id="app">
+    </App>
+
+</mvc:View>

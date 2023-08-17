@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:forms="sap.ui.layout.form"
+>
+
+    <forms:SimpleForm labelSpanL="4" labelSpanM="4" editable="false"
+					  labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					  maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
+
+		<Label text="GLoBE Revenue Year 2"/>
+		<Text text="Senior Ui Developer (UIDEV-SR)"/>
+
+		<Label text="GLoBE Revenue Year "/>
+		<Text text="Salary Grade 18 (GR-14)"/>
+
+		<Label text="GLoBE Income/Loss Year 1"/>
+		<Text text="Developer"/>
+
+		<Label text="GLoBE Revenue Year"/>
+        <Text text="Developer"/>
+
+	</forms:SimpleForm>
+
+    <forms:SimpleForm labelSpanL="4" labelSpanM="4" editable="false"
+					  labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					  maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
+
+		<Label text="Chart of Accounts"/>
+		<Text text="Employee"/>		
+
+		<Label text="Country"/>
+		<Text text="1"/>
+
+		<Label text="Fiscal Year"/>
+		<Text text="1"/>
+
+        <Label text="DeMinimis Exclusion"/>
+		<Text text="1"/>
+
+	</forms:SimpleForm>
+
+    <forms:SimpleForm labelSpanL="4" labelSpanM="4" editable="false"
+					  labelSpanS="4" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+					  maxContainerCols="2" layout="ResponsiveGridLayout" width="100%">
+
+		<Label text="GLoBE Revenue Average"/>
+		<Text text="1"/>
+
+        <Label text="GLoBE Income/Loss Average"/>
+		<Text text="1"/>
+        
+        <Label text="GLoBE Income/Loss Year 2"/>
+		<Text text="1"/>
+        
+        <Label text="GLoBE Income/Loss Year"/>
+		<Text text="1"/>
+
+	</forms:SimpleForm>
+
+</core:FragmentDefinition>

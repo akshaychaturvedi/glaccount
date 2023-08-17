@@ -1,0 +1,1 @@
+using DeminimisService as service from '../../srv/Deminimis';

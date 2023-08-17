@@ -1,0 +1,133 @@
+<mvc:View xmlns:uxap="sap.uxap"
+		controllerName="deminimis.controller.Detail"
+		xmlns="sap.m"
+        xmlns:l="sap.ui.layout"
+        xmlns:f="sap.ui.layout.form"
+        xmlns:mvc="sap.ui.core.mvc"
+		xmlns:fb="sap.ui.comp.filterbar"
+        xmlns:core="sap.ui.core">
+
+		<uxap:ObjectPageLayout 
+			id="ObjectPageLayout"
+			enableLazyLoading="true"
+			useIconTabBar="true"
+			showTitleInHeaderContent="true"
+			upperCaseAnchorBar="false">
+		<uxap:headerTitle>
+			<uxap:ObjectPageDynamicHeaderTitle >
+				<uxap:heading>					
+				</uxap:heading>
+			</uxap:ObjectPageDynamicHeaderTitle>
+		</uxap:headerTitle>
+
+		<uxap:headerContent></uxap:headerContent>
+
+		<uxap:sections>
+			<uxap:ObjectPageSection titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection title="General Information" titleUppercase="false">
+						<uxap:blocks>
+							<core:Fragment fragmentName="deminimis.fragment.form" type="XML" ></core:Fragment>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+
+		</uxap:ObjectPageLayout>
+		<!-- <fb:FilterBar id="filterbar" showAllFilters="false" showGoOnFB="false" showFilterConfiguration="false">
+							
+		</fb:FilterBar>
+
+		<OverflowToolbar design="Transparent" height="3rem">
+		<Title text="General Information"/>
+		</OverflowToolbar>
+
+        <f:Form id="FormChange354"
+			editable="false">
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="3"
+					labelSpanL="3"
+					labelSpanM="3"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="4"
+					emptySpanL="4"
+					emptySpanM="4"
+					emptySpanS="0"
+					columnsXL="1"
+					columnsL="1"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer>
+					<f:formElements>
+						<f:FormElement label="GLoBE Revenue Year 2">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Revenue Year">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Income/Loss Year 1">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Revenue Year 1">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Chart of Accounts">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Country">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="Fiscal Year">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Revenue Average">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="DeMinimis Exclusion">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Income/Loss Average">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Income/Loss Year 2">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="GLoBE Income/Loss Year">
+							<f:fields>
+								<Input value="{SupplierName}"/>
+							</f:fields>
+						</f:FormElement>						
+												
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form> -->
+    
+</mvc:View>

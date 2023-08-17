@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="DeminimisService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="DeminimisData" EntityType="DeminimisService.DeminimisData"/>
+            </EntityContainer>
+            <EntityType Name="DeminimisData">
+                <Key>
+                    <PropertyRef Name="REV_YEAR2"/>
+                    <PropertyRef Name="REV_YEAR"/>
+                    <PropertyRef Name="INC_YEAR1"/>
+                    <PropertyRef Name="REV_YEAR1"/>
+                    <PropertyRef Name="KTOPL"/>
+                    <PropertyRef Name="LAND1"/>
+                    <PropertyRef Name="GJAHR"/>
+                    <PropertyRef Name="REV_AVG"/>
+                    <PropertyRef Name="EXCLUSION"/>
+                    <PropertyRef Name="INC_AVG"/>
+                    <PropertyRef Name="INC_YEAR2"/>
+                    <PropertyRef Name="INC_YEAR"/>
+                </Key>
+                <Property Name="REV_YEAR2" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="REV_YEAR" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="INC_YEAR1" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="REV_YEAR1" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="KTOPL" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="LAND1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="GJAHR" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="REV_AVG" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="EXCLUSION" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="INC_AVG" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="INC_YEAR2" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="INC_YEAR" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="DeminimisService.DeminimisData/REV_YEAR2">
+                <Annotation Term="Common.Label" String="GLoBE Revenue Year 2"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/REV_YEAR">
+                <Annotation Term="Common.Label" String="GLoBE Revenue Year "/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/INC_YEAR1">
+                <Annotation Term="Common.Label" String="GLoBE Income/Loss Year 1"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/REV_YEAR1">
+                <Annotation Term="Common.Label" String="GLoBE Revenue Year 1"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/KTOPL">
+                <Annotation Term="Common.Label" String="Chart of Accounts"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/LAND1">
+                <Annotation Term="Common.Label" String="Country"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/GJAHR">
+                <Annotation Term="Common.Label" String="Fiscal Year"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/REV_AVG">
+                <Annotation Term="Common.Label" String="GLoBE Revenue Average"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/EXCLUSION">
+                <Annotation Term="Common.Label" String="DeMinimis Exclusion"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/INC_AVG">
+                <Annotation Term="Common.Label" String="GLoBE Income/Loss Average"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/INC_YEAR2">
+                <Annotation Term="Common.Label" String="GLoBE Income/Loss Year 2"/>
+            </Annotations>
+            <Annotations Target="DeminimisService.DeminimisData/INC_YEAR">
+                <Annotation Term="Common.Label" String="GLoBE Income/Loss Year"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

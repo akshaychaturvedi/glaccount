@@ -13,14 +13,16 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.108.10",
+    "@sap/ux-specification": "^1.108.11",
     "sqlite3": "^5"
   },
   "scripts": {
     "start": "cds-serve",
     "watch-glaccount": "cds watch --open glaccount/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-glacc": "cds watch --open glacc/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-gridtable": "cds watch --open gridtable/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-gridtable": "cds watch --open gridtable/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-tbupload": "cds watch --open tbupload/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-deminimis": "cds watch --open deminimis/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/glaccount",

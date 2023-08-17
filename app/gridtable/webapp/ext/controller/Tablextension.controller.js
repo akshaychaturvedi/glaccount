@@ -9,43 +9,50 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 			 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 			 * @memberOf gridtable.ext.controller.Tablextension
 			 */
-			onInit: function (oEvent) {
+			// onInit: function (oEvent) {
 				// you can access the Fiori elements extensionAPI via this.base.getExtensionAPI
 				// var oModel = this.base.getExtensionAPI().getModel();
 				// var oView = this.getView();
 				// console.log(oView);
 				// console.log(this.base.getExtensionAPI().getFilters());
-				console.log(this.base.getExtensionAPI().getMetadata());
+				//console.log(this.base.getExtensionAPI().getMetadata());
 				// this.base.getExtensionAPI().setFilterValues('region', 'Ogun');
 				// this.base.getExtensionAPI().setFilterValues('country', 'Spain');
 				// var oExtAPI = this.base.getExtensionAPI()
 				// console.log('Here')
 				// console.log(oExtAPI)		
 				
-				var oModel = this.base.getExtensionAPI().getModel('ui');
-				let sActionName = "test";
-				let mParameters = {
-					//contexts: oEvent.getSource().getBindingContext(),
-					model: oModel,
-					// label: 'Confirm',
-					// invocationGrouping: true
-				};
-				var that = this;
-				this.base.getExtensionAPI().getEditFlow().invokeAction(sActionName, mParameters).then(function (oParams) {
+				//var oModel = this.base.getExtensionAPI().getModel();
+				// var oModel = this.base.getAppComponent().getModel('undefined')
+				// // oModel.callFunction("/TestFunctionImport", {    // function import name
+				// // 	method: "POST",                             // http method
+				// // 	urlParameters: {"parameter1" : "value1"  }, // function import parameters        
+				// // 	sucess: function(oData, response) { },      // callback function for success
+				// // 	error: function(oError){ }                  // callback function for error
+				// // });
+				// let sActionName = "test";
+				// let mParameters = {
+				// 	//contexts: oEvent.getSource().getBindingContext(),
+				// 	model: oModel,
+				// 	// label: 'Confirm',
+				// 	// invocationGrouping: true
+				// };
+				// var that = this;
+				// this.base.getExtensionAPI().getEditFlow().invokeAction(sActionName, mParameters).then(function (oParams) {
 
-					console.log('action call 2');
-					//this.base.getExtensionAPI().setFilterValues('region', 'Ogun');
-					//that.base.getExtensionAPI().setFilterValues('country', 'Spain');
+				// 	console.log('action call 2');
+				// 	//this.base.getExtensionAPI().setFilterValues('region', 'Ogun');
+				// 	//that.base.getExtensionAPI().setFilterValues('country', 'Spain');
 
-				}).catch(function (error) {
-					console.log(error);
-				});;
+				// }).catch(function (error) {
+				// 	console.log(error);
+				// });;
 
-			},
-			onAfterRendering: function (oEvent) {
-				console.log('Test');
-				console.log(this.base.getExtensionAPI().getMetadata());
-				this.base.getExtensionAPI().refresh();
+			// },
+			// onAfterRendering: function (oEvent) {
+				// console.log('Test');
+				// console.log(this.base.getExtensionAPI().getMetadata());
+				// this.base.getExtensionAPI().refresh();
 
 				// var oModel = this.base.getExtensionAPI().getModel();
 				// let sActionName = "test";
@@ -72,7 +79,7 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 				// var jsonString =
 				// 	'{"SelectionVariantID":"","Parameters":[{"PropertyName":"orderstart","PropertyValue":"' + datStr +'"}]}';
 				// smFilt.setDataSuiteFormat(jsonString);
-			},
+			// },
 			onBeforeRendering: function (oEvent) {
 				console.log('Test Before');
 				console.log(this.base.getExtensionAPI().getMetadata());
@@ -91,7 +98,10 @@ sap.ui.define(['sap/ui/core/mvc/ControllerExtension'], function (ControllerExten
 
 					console.log('action call');
 					//this.base.getExtensionAPI().setFilterValues('region', 'Ogun');
-					that.base.getExtensionAPI().setFilterValues('country', oParams.value);
+					//that.base.getExtensionAPI().setFilterValues('country', oParams.value);
+					that.base.getExtensionAPI().setFilterValues('name', 'Amir Ware');
+					that.base.getExtensionAPI().refresh();
+					//that.base.getExtensionAPI().setFilterValues('country', oParams.value);
 					that.base.getExtensionAPI().refresh();
 
 				}).catch(function (error) {

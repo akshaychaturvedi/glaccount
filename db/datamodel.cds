@@ -55,3 +55,11 @@ context tables {
         };
 
 }
+
+
+context tbuploadtables {
+    entity TrialBalance : cuid {
+        chartOfAccounts : String(4)  @title: 'Chart of Accounts';
+        glaccount       : String(10) @title  : 'GL Account';
+    }
+}

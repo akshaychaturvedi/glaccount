@@ -1,0 +1,223 @@
+<!-- <mvc:View 
+    xmlns:smarttable="sap.ui.comp.smarttable" 
+    xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+    xmlns:f="sap.f" 
+    controllerName="deminimis.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar" 
+    displayBlock="true"
+    xmlns="sap.m"> -->
+<mvc:View
+		controllerName="deminimis.controller.Main"
+		height="100%"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		xmlns="sap.m"
+        xmlns:grid="sap.ui.table"
+        xmlns:smartfilterbar="sap.ui.comp.smartfilterbar"
+		xmlns:f="sap.f"
+		xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:svm="sap.ui.comp.smartvariants">    
+    
+    <f:DynamicPage headerExpanded="{/headerExpanded}">
+
+			<f:title>
+				<f:DynamicPageTitle>					
+					<f:expandedContent>
+						<Label id="expandedLabel" text="No filters active" />
+					</f:expandedContent>
+					<f:snappedContent>
+						<Label id="snappedLabel" text="No filters active" />
+					</f:snappedContent>
+				</f:DynamicPageTitle>
+			</f:title>
+	
+    		<f:header>
+				<f:DynamicPageHeader>
+					<f:content>
+						<smartfilterbar:SmartFilterBar 
+                                        id="smartFilter"
+                                        entitySet="DeminimisData"
+                                        enableBasicSearch="true"
+                                        search="onSearch"
+                                        basicSearchFieldName="KTOPL"
+                                        persistencyKey="SmartFilter_Explored">               
+                        <smartfilterbar:controlConfiguration>
+                        <smartfilterbar:ControlConfiguration 
+                                        key="GJAHR"
+                                        visibleInAdvancedArea="true"
+                                        label="Fiscal Year">                                        
+                        </smartfilterbar:ControlConfiguration>
+                        <smartfilterbar:ControlConfiguration 
+                                        key="LAND1"
+                                        visibleInAdvancedArea="true"
+                                        label="Country">
+                        </smartfilterbar:ControlConfiguration>                    
+                        </smartfilterbar:controlConfiguration>
+               </smartfilterbar:SmartFilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+
+			<f:content>
+				<grid:Table
+                    id="gridTable"
+                    rows="{
+                        path: '/DeminimisData',
+                        sorter: {
+                            path: 'LAND1'
+                        }
+                    }"                    
+                    fixedColumnCount="3"
+                    selectionMode="Single"
+                    visibleRowCount="12"
+                    selectionBehavior="RowOnly"
+                    enableSelectAll="false"
+                    rowSelectionChange="onRowSelected"
+                >
+                
+                <grid:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title text="Deminimis Data"></Title>
+                    </OverflowToolbar>
+                </grid:extension>
+                <grid:columns>    
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Revenue Year 2"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{REV_YEAR2}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Revenue Year"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{REV_YEAR}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Income/Loss Year 1"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{INC_YEAR1}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Revenue Year 1"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{REV_YEAR1}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="Chart of Accounts"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{KTOPL}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="Country"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{LAND1}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="Fiscal Year"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{GJAHR}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Revenue Average"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{REV_AVG}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="DeMinimis Exclusion"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{EXCLUSION}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Income/Loss Average"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{INC_AVG}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Income/Loss Year 2"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{INC_YEAR2}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column width="11rem">
+                        <Label text="GLoBE Income/Loss Year"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{INC_YEAR}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                </grid:columns>
+				</grid:Table>
+			</f:content>
+	</f:DynamicPage>
+
+    <!-- <f:DynamicPage >
+        <f:header>
+            <f:DynamicPageHeader >
+               <smartfilterbar:SmartFilterBar 
+                                        id="smartFilter"
+                                        entitySet="DeminimisData"
+                                        enableBasicSearch="true"
+                                        basicSearchFieldName="KTOPL"
+                                        persistencyKey="SmartFilter_Explored">               
+                <smartfilterbar:controlConfiguration>
+                    <smartfilterbar:ControlConfiguration 
+                                        key="GJAHR"
+                                        visibleInAdvancedArea="true"
+                                        label="Fiscal Year">                                        
+                    </smartfilterbar:ControlConfiguration>
+                    <smartfilterbar:ControlConfiguration 
+                                        key="LAND1"
+                                        visibleInAdvancedArea="true"
+                                        label="Country">
+                    </smartfilterbar:ControlConfiguration>                    
+                </smartfilterbar:controlConfiguration>
+               </smartfilterbar:SmartFilterBar>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <smarttable:SmartTable id="smartTable" 
+                                   header="Deminimis Data"
+                                   enableAutoColumnWidth="true"
+                                   enableAutoBinding="true"
+                                   tableType="Table"
+                                   entitySet="DeminimisData"
+                                   showRowCount="true"
+                                   smartFilterId="smartFilter"
+                                   enableExport="true"
+                                   class="sapUiResponsiveContentPadding"                                   
+                                   initiallyVisibleFields="KTOPL,LAND1">                               
+                <Table 
+                    id="idTable" 
+                    fixedLayout="false"
+                    selectionChange="handleSelectionChange" 
+                    mode="SingleSelectMaster"
+                    rememberSelections="false"></Table>
+            </smarttable:SmartTable>
+        </f:content>
+
+    </f:DynamicPage> -->
+    
+</mvc:View>
