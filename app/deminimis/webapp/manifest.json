@@ -107,7 +107,7 @@
         },
         {
           "name": "Detail",
-          "pattern": "Detail/{KTOPL}",
+          "pattern": "Detail/{GJAHR},{KTOPL},{LAND1}",
           "target": [
             "TargetDetail"
           ]

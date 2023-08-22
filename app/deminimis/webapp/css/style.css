@@ -1,1 +1,60 @@
 /* Enter your custom styles here */
+
+.black {
+    color: black;
+}
+
+
+/* tr[data-background="No"] {
+    background-color: #eaa6a6 !important;
+}
+
+tr[data-background="USA"] {
+    background-color: #7dc0dc !important;
+} */
+
+.bold.sapMObjectIdentifier {
+
+    font-weight: bold !important;
+    color: #0c1408;
+
+}
+
+/* .sapUiTableContentRow.red {
+    background: #8CE8AD !important;
+    font-weight: bold !important;
+    opacity: 15%;
+} */
+.green {
+    background: #66FF33!important;}
+
+.red {
+    background-color: #FF6F69!important;}    
+
+.rowExclusionFalse {
+    background-color: #FF6F69 !important;
+}
+
+[data-background="Yes"] {
+    background-color: #c9fcd5 !important;
+  }
+tr[data-background="Yes"] {
+background-color: #c9fcd5 !important;
+}  
+[data-background="No"] {
+background-color: #FF6F69 !important;
+} 
+
+.rowExclusionTrue {
+    background: #8CE8AD !important;
+}
+
+.customTable .exclusionYesRow {
+    background-color: #8CE8AD;
+    /* Custom color for Exclusion "Yes" */
+}
+
+.customTable .exclusionNoRow {
+    background-color: #FF6F69;
+    /* Custom color for Exclusion "No" */
+}
