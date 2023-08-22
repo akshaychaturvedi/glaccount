@@ -51,7 +51,8 @@ sap.ui.define([
                         console.log('Function call');
                         var smartFilterBar = that.getView().byId("smartFilter");
                         var field = smartFilterBar.getControlByKey("GJAHR");
-                        field.setValue("=2022");
+                        field.setValue("2022");
+                        this.onSearch();
                         // jModel.setData(myData);
                         // oContext.getView().setModel(jModel, "fareModel");
                        },
@@ -132,9 +133,11 @@ sap.ui.define([
 
                 let oView = this.getView();
                 let oTable = oView.byId("gridTable");
+                oTable.setBusy(true);
                 let aFilters = oView.byId("smartFilter").getFilters();
 
                 oTable.getBinding("rows").filter(aFilters);
+                oTable.setBusy(false);
             },
             formatRows:function(x){
                 console.log("format");
@@ -155,7 +158,7 @@ sap.ui.define([
                 }
                 return iValue.toString();
             },
-            onRowsUpdated1: function (oEvent) {
+            onRowsUpdated: function (oEvent) {
                 console.log('Row updated');
                 let oView = this.getView();
                 let oTable = oView.byId("gridTable");
@@ -173,8 +176,11 @@ sap.ui.define([
                             { console.log(oRow);
                             oRow.addStyleClass("rowExclusionTrue"); }
                         else if (cellText === "No")
-                            oRow.addStyleClass("rowExclusionFalse");
-                        
+                            oRow.addStyleClass("rowExclusionFalse"); 
+                        else {
+                            oRow.removeStyleClass("rowExclusionTrue");
+                            oRow.removeStyleClass("rowExclusionFalse");
+                        }                                                   
                     })
                 }
             },            
