@@ -95,113 +95,98 @@
                 <grid:extension>
                     <OverflowToolbar style="Clear">
                         <Title text="Deminimis Data"></Title>
-                        <ToolbarSeparator />
-                        <Button text="Download"></Button>	
+                        <ToolbarSpacer />
+                        <Button icon="sap-icon://download" press="onExport"/>
                     </OverflowToolbar>
                     	
                 </grid:extension>
                 
                 <grid:columns>    
-                    <grid:Column autoResizable="true" width="7rem" sortProperty="KTOPL">
-                        <Label text="Chart of Accounts"/>
-                        <grid:template>
-                            <ObjectIdentifier text="{KTOPL}"></ObjectIdentifier>
-                        </grid:template>
-                    </grid:Column>
-
-                    <grid:Column autoResizable="true" width="5rem" sortProperty="LAND1">
-                        <Label text="Country"/>
-                        <grid:template>
-                            <ObjectIdentifier text="{LAND1}"></ObjectIdentifier>
-                        </grid:template>
-                    </grid:Column>
-
-                    <grid:Column autoResizable="true" width="5rem" sortProperty="GJAHR">
-                        <Label text="Fiscal Year"/>
+                    <grid:Column autoResizable="true" width="4rem" sortProperty="GJAHR">
+                        <Text text="Fiscal Year"/>
                         <grid:template>
                             <ObjectIdentifier text="{GJAHR}"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>
+                    </grid:Column>                                    
 
-                    <!-- <grid:Column autoResizable="true" width="11rem" sortProperty="ExclusionValue" >                        
-                        <Label text="DeMinimis Exclusion"/>
+                    <grid:Column autoResizable="true" width="4.5rem" sortProperty="LAND1">
+                        <Text text="Country"/>
                         <grid:template>
-                            <ObjectIdentifier text="{ExclusionValue}" class="bold"></ObjectIdentifier>
+                            <ObjectIdentifier text="{LAND1}"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column> -->
+                    </grid:Column>  
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="REV_YEAR2">
-                        <Label text="GLoBE Revenue Year 2"/>
+                    <grid:Column autoResizable="true" width="5rem" sortProperty="KTOPL">
+                        <Text text="Chart of Accounts"/>
                         <grid:template>
-                            <ObjectIdentifier text="{REV_YEAR2}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{KTOPL}"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>
+                    </grid:Column>                  
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="REV_YEAR">
-                        <Label text="GLoBE Revenue Year"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR">
+                        <Text text="GLoBE Revenue Year"/>
                         <grid:template>
                             <ObjectIdentifier text="{REV_YEAR}"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="INC_YEAR1">
-                        <Label text="GLoBE Income/Loss Year 1"/>
-                        <grid:template>
-                            <ObjectIdentifier text="{INC_YEAR1}"></ObjectIdentifier>
-                        </grid:template>
-                    </grid:Column>
-
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="REV_YEAR1">
-                        <Label text="GLoBE Revenue Year 1"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR1">
+                        <Text text="GLoBE Revenue Year 1"/>
                         <grid:template>
                             <ObjectIdentifier text="{REV_YEAR1}"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="REV_AVG">
-                        <Label text="GLoBE Revenue Average"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR2">
+                        <Text text="GLoBE Revenue Year 2"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{REV_YEAR2}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>    
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_AVG">
+                        <Text text="GLoBE Revenue Average"/>
                         <grid:template>
                             <ObjectIdentifier text="{REV_AVG}"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>                    
+                    </grid:Column>    
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="INC_AVG">
-                        <Label text="GLoBE Income/Loss Average"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR">
+                        <Text text="GLoBE Income/Loss Year"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'INC_YEAR', formatter: '.formatValue' }"></ObjectIdentifier>                            
+                        </grid:template>
+                    </grid:Column>            
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR1">
+                        <Text text="GLoBE Income/Loss Year 1"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'INC_YEAR1', formatter: '.formatValue' }"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column> 
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR2">
+                        <Text text="GLoBE Income/Loss Year 2"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'INC_YEAR2', formatter: '.formatValue' }"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>                    
+                    
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_AVG">
+                        <Text text="GLoBE Income/Loss Average"/>
                         <grid:template>
                             <ObjectIdentifier text="{INC_AVG}"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>
+                    </grid:Column>                                       
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="INC_YEAR2">
-                        <Label text="GLoBE Income/Loss Year 2"/>
+                    <grid:Column autoResizable="true" width="6rem" sortProperty="EXCLUSION" >
+                        <Text text="DeMinimis Exclusion"/>
                         <grid:template>
-                            <ObjectStatus text="{INC_YEAR2}"></ObjectStatus>
+                            <ObjectIdentifier text="{= ${EXCLUSION} === true ? 'Yes' : 'No'}" class="bold"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
-
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="INC_YEAR">                        
-                        <Label text="GLoBE Income/Loss Year"/>
-                        <grid:template>
-                            <HBox >
-                                <ObjectIdentifier text="{INC_YEAR}">                                
-                                </ObjectIdentifier>
-                                <customData>
-                                    <core:CustomData key="background" 
-                                    xmlns:core="sap.ui.core"
-                                    value="{= ${ExclusionValue} === 'Yes' ? 'Yes' : 'No'}" 
-                                    writeToDom="true"></core:CustomData>
-                                </customData>                                
-                            </HBox>
-                        </grid:template>
-                    </grid:Column>  
-
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="ExclusionValue" >                        
-                        <Label text="DeMinimis Exclusion"/>
-                        <grid:template>
-                            <ObjectIdentifier text="{ExclusionValue}" class="bold"></ObjectIdentifier>
-                        </grid:template>
-                    </grid:Column>
-
+  
+                    
                 </grid:columns>
 
                 <!-- <grid:rows>

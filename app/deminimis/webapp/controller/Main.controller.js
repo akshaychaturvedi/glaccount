@@ -1,10 +1,11 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller"
+    "sap/ui/core/mvc/Controller",
+    "sap/ui/core/format/NumberFormat"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, NumberFormat) {
         "use strict";
 
         return Controller.extend("deminimis.controller.Main", {
@@ -183,7 +184,103 @@ sap.ui.define([
                         }                                                   
                     })
                 }
-            },            
+            }, 
+            
+            formatValue: function(iNumber){
+                var oFloatNumberFormat = NumberFormat.getFloatInstance({
+                    maxFractionDigits: 2,
+                    minFractionDigits: 2,
+                    groupingEnabled: true
+                },
+                sap.ui.getCore().getConfiguration().getLocale());
+
+                return oFloatNumberFormat.format(iNumber);
+            },
+
+            _createColumnConfig: function () {
+                return [
+                    {
+                        label: "GLoBE Revenue Year 2",
+                        property: "REV_YEAR2",
+                        type: "number"
+                    },
+                    {
+                        label: "GLoBE Revenue Year",
+                        property: "REV_YEAR",
+                        type: "number"
+                    },
+                    {
+                        label: "GLoBE Income/Loss Year 1",
+                        property: "INC_YEAR1",
+                        type: "number"
+                    },
+                    {
+                        label: "GLoBE Income/Loss Year",
+                        property: "INC_YEAR",
+                        type: "number"
+                    },
+                    {
+                        label: "Chart of Accounts",
+                        property: "KTOPL"
+                    },
+                    {
+                        label: "Country",
+                        property: "LAND1"
+                    },
+                    {
+                        label: "Fiscal Year",
+                        property: "GJAHR"
+                    },
+                    {
+                        label: "GLoBE Revenue Average",
+                        property: "REV_AVG",
+                        type: "number"
+                    },
+                    {
+                        label: "DeMinimis Exclusion",
+                        property: "EXCLUSION",
+                        type: "boolean"
+                    },
+                    {
+                        label: "GLoBE Income/Loss Average",
+                        property: "INC_AVG",
+                        type: "number"
+                    },
+                    {
+                        label: "GLoBE Income/Loss Year 2",
+                        property: "INC_YEAR2",
+                        type: "number"
+                    },
+                    {
+                        label: "GLoBE Income/Loss Year",
+                        property: "INC_YEAR",
+                        type: "number"
+                    }];
+            },
+
+            onExport: function () {
+
+                var aCols, oBinding, oSettings, oSheet, oTable, sFilename;
+
+                oTable = this.byId('gridTable');
+                oBinding = oTable.getBinding('rows');
+                aCols = this._createColumnConfig();
+                sFilename = 'DeminimisReport.xlsx';
+
+                oSettings = {
+                    workbook: { columns: aCols },
+                    dataSource: oBinding, 
+                    fileName: sFilename
+                };
+
+                oSheet = new Spreadsheet(oSettings);
+                oSheet.build()
+                    .then(function () {
+                        MessageToast.show('Spreadsheet export has finished');
+                    }).finally(function () {
+                        oSheet.destroy();
+                    });
+            },
     
         });
     });
