@@ -68,6 +68,7 @@
                         }                        
                     }"                                        
                     fixedColumnCount="3"
+                    enableColumnReordering="true"
                     selectionMode="Single" 
                     alternateRowColors="true" 
                     visibleRowCount="12"
@@ -122,12 +123,12 @@
                         </grid:template>
                     </grid:Column>
 
-                    <grid:Column autoResizable="true" width="11rem" sortProperty="ExclusionValue" >                        
+                    <!-- <grid:Column autoResizable="true" width="11rem" sortProperty="ExclusionValue" >                        
                         <Label text="DeMinimis Exclusion"/>
                         <grid:template>
                             <ObjectIdentifier text="{ExclusionValue}" class="bold"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>
+                    </grid:Column> -->
 
                     <grid:Column autoResizable="true" width="11rem" sortProperty="REV_YEAR2">
                         <Label text="GLoBE Revenue Year 2"/>
@@ -192,7 +193,15 @@
                                 </customData>                                
                             </HBox>
                         </grid:template>
-                    </grid:Column>                    
+                    </grid:Column>  
+
+                    <grid:Column autoResizable="true" width="11rem" sortProperty="ExclusionValue" >                        
+                        <Label text="DeMinimis Exclusion"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ExclusionValue}" class="bold"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
                 </grid:columns>
 
                 <!-- <grid:rows>

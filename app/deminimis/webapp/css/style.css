@@ -32,11 +32,13 @@ tr[data-background="USA"] {
     background-color: #FF6F69!important;}    
 
 .rowExclusionFalse {
-    background-color: #FF6F69 !important;
+    background-color: #FFE9E9 !important;
 }
 
 [data-background="Yes"] {
-    background-color: #c9fcd5 !important;
+    background-color: #EEFCF3 !important;
+    opacity: 20%;
+    font-weight: 400;
   }
 tr[data-background="Yes"] {
 background-color: #c9fcd5 !important;
@@ -46,7 +48,7 @@ background-color: #FF6F69 !important;
 } 
 
 .rowExclusionTrue {
-    background: #8CE8AD !important;
+    background: #EEFCF3 !important;
 }
 
 .customTable .exclusionYesRow {

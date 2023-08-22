@@ -155,7 +155,7 @@ sap.ui.define([
                 }
                 return iValue.toString();
             },
-            onRowsUpdated: function (oEvent) {
+            onRowsUpdated1: function (oEvent) {
                 console.log('Row updated');
                 let oView = this.getView();
                 let oTable = oView.byId("gridTable");
