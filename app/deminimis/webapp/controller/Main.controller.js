@@ -167,12 +167,13 @@ sap.ui.define([
                         //$("#" + cellId).css("background-color", "red");
                         //const cellText = sap.ui.getCore().byId(cellId).getText();
                         const cellText = oRow.getBindingContext().getObject().ExclusionValue;
+                        oRow.removeStyleClass("rowExclusionTrue");
+                        oRow.removeStyleClass("rowExclusionFalse");
                         if (cellText === "Yes")
                             { console.log(oRow);
                             oRow.addStyleClass("rowExclusionTrue"); }
                         else if (cellText === "No")
                             oRow.addStyleClass("rowExclusionFalse");
-                        else oRow.removeStyleClass("rowExclusionTrue");
                         
                     })
                 }
