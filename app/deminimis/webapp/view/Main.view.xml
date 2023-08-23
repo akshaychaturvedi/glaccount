@@ -126,28 +126,28 @@
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR">
                         <Text text="GLoBE Revenue Year"/>
                         <grid:template>
-                            <ObjectIdentifier text="{REV_YEAR}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{ path: 'REV_YEAR', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR1">
                         <Text text="GLoBE Revenue Year 1"/>
                         <grid:template>
-                            <ObjectIdentifier text="{REV_YEAR1}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{ path: 'REV_YEAR1', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR2">
                         <Text text="GLoBE Revenue Year 2"/>
                         <grid:template>
-                            <ObjectIdentifier text="{REV_YEAR2}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{ path: 'REV_YEAR2', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>    
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_AVG">
                         <Text text="GLoBE Revenue Average"/>
                         <grid:template>
-                            <ObjectIdentifier text="{REV_AVG}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{ path: 'REV_AVG', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>    
 
@@ -170,12 +170,12 @@
                         <grid:template>
                             <ObjectIdentifier text="{ path: 'INC_YEAR2', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
-                    </grid:Column>                    
+                    </grid:Column>                       
                     
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_AVG">
                         <Text text="GLoBE Income/Loss Average"/>
                         <grid:template>
-                            <ObjectIdentifier text="{INC_AVG}"></ObjectIdentifier>
+                            <ObjectIdentifier text="{ path: 'INC_AVG', formatter: '.formatValue' }"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>                                       
 
@@ -185,10 +185,9 @@
                             <ObjectIdentifier text="{= ${EXCLUSION} === true ? 'Yes' : 'No'}" class="bold"></ObjectIdentifier>
                         </grid:template>
                     </grid:Column>
-  
-                    
-                </grid:columns>
 
+                </grid:columns>
+                    
                 <!-- <grid:rows>
                     <grid:Row>
                         <ColumnListItem type="Active">
