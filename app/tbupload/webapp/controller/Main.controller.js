@@ -34,7 +34,6 @@ sap.ui.define([
             onCancel: function () {
                 this._resetUploader();
                 this._togglePagePreview(false);
-                this.getView().getModel().destroy();
             },
 
             onFileBrowser: function (oEvent) {
@@ -111,7 +110,7 @@ sap.ui.define([
                             that.getView().byId("previewButton").setEnabled(true);
 
                             that.getModel().setData({ data: aExcelData });
-                            //that.getModel().refresh(true);
+                            that.getModel().refresh(true);
 
                         } else {
                             MessageToast.show("No data");

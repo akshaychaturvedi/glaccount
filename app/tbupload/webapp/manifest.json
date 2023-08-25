@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "../../service/",
+        "uri": "../../tbservice/",
         "type": "OData",
         "settings": {
           "annotations": [],

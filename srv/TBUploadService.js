@@ -10,8 +10,8 @@ module.exports = async function (srv) {
         console.log('Here');
     }),
 
-    this.on("UploadData", async (req) => {
-        console.log(JSON.parse(req.data.data));
+    this.on("UploadData", async (req) => { 
+        
         var extract = JSON.parse(req.data.data);
         var extractedData = [];
 
@@ -19,19 +19,20 @@ module.exports = async function (srv) {
         extract.forEach(item => {
             extractedData.push({
                 companyCode: item.CompanyCode,
+                chartOfAccounts: item.ChartofAccounts,
                 year: item.Year,
-                ledger: item.Ledger,
-                glaccount: item.GLaccount,
                 period: item.Period,
+                glAccount: item.GLAccount,
+                alc: item.AmountLC,
+                agc:item.AmountGC,
                 lc: item.LocalCurrency,
                 gc: item.GlobalCurrency,
-                source: item.Source,
-                profitCenter: item.ProfitCenter,
                 costCenter: item.CostCenter,
+                profitCenter: item.ProfitCenter,
                 businessArea: item.BusinessArea,
-                division: item.Division,
                 functionalArea: item.FunctionalArea,
-                chartOfAccounts: item.ChartOfAccounts
+                source: item.Source
+                
             });
         });
         
