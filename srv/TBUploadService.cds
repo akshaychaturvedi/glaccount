@@ -13,4 +13,6 @@ service TBUploadService @(path: '/tbservice'){
         excel : LargeBinary;
     };
 
+    action UploadData(data: String) returns String;
+
 }

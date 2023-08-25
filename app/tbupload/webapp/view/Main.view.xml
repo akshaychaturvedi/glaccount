@@ -1,4 +1,4 @@
-<mvc:View controllerName="tbupload.controller.Main"
+<mvc:View xmlns:smarttable="sap.ui.comp.smarttable" controllerName="tbupload.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m"
     xmlns:f="sap.f"
@@ -6,15 +6,14 @@
     xmlns:u="sap.ui.unified">
 
     <f:DynamicPage id="mainPage" headerExpanded="true" toggleHeaderOnTitleClick="true">
-
         <!-- DynamicPage Title -->
         <f:title>
             <f:DynamicPageTitle id="pageTitle">
                 <f:heading>
-                    <Title id="headerTitle" text="Non TB Upload"></Title>
+                    <Title id="headerTitle" text="{i18n>title}"></Title>
                 </f:heading>
                 <f:actions>
-                    <Button id="downloadTemplate" press="onPressDownloadTemplate" type="Emphasized" text="Download Template"></Button>
+                    <Button id="downloadTemplate" press="onDownloadTemplate" type="Emphasized" text="{i18n>downloadButton}"></Button>
                 </f:actions>
             </f:DynamicPageTitle>
         </f:title>
@@ -23,108 +22,115 @@
         <f:header>
             <f:DynamicPageHeader id="pageHeader">
                 <layout:HorizontalLayout id = "headerLayout" class="sapUiResponsiveContentPadding">
-                    <u:FileUploader id="fileUploader" name="UploadedFile" uploadUrl="../../service/ExcelUpload/excel" tooltip="" uploadComplete="handleUploadComplete" fileType="xlsx" multiple="false" useMultipart="true" sendXHR="false" httpRequestMethod="Put"/>
-                    <Button id="previewButton" text="Preview Data" press="onPressPreview"/>
+                    <u:FileUploader
+                        id="uploader"
+                        sameFilenameAllowed="true"
+                        iconOnly="false"
+                        fileType="XLSX,xlsx"
+                        iconFirst="true"
+                        buttonText="Browse"
+                        style="Emphasized"
+                        change="onFileBrowser"
+                    />                                    
+                    <Button id="previewButton" text="{i18n>previewButton}" press="onPreview"/>
                 </layout:HorizontalLayout>
             </f:DynamicPageHeader>
         </f:header>
 
         <!-- DynamicPage Content -->
         <f:content>
-            <Table id="previewTable" class="sapFDynamicPageAlignContent" width="auto">
-                <headerToolbar>
-                    <OverflowToolbar id="tableToolbar">
-                        <Title id="tableTitle" text="Data Preview"></Title>
-                    </OverflowToolbar>
-                </headerToolbar>
+                        
+            <Table id="previewTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapFDynamicPageAlignContent" width="auto" items="{/data}">
+                
                 <columns>
                     <Column>
-                        <Text text="Company Code" />
+                        <Text text="{i18n>companyCode}" />
                     </Column>
                     <Column>
-                        <Text text="Year" />
+                        <Text text="{i18n>chartOfAccounts}" />
                     </Column>
                     <Column>
-                        <Text text="Ledger" />
+                        <Text text="{i18n>year}" />
                     </Column>
                     <Column>
-                        <Text text="GL Account" />
+                        <Text text="{i18n>period}" />
                     </Column>
                     <Column>
-                        <Text text="Period" />
+                        <Text text="{i18n>glAccount}" />
                     </Column>
                     <Column>
-                        <Text text="Local Currency" />
+                        <Text text="{i18n>amountLocalCurrency}" />
                     </Column>
                     <Column>
-                        <Text text="Global Currency" />
+                        <Text text="{i18n>amountGlobalCurrency}" />
                     </Column>
                     <Column>
-                        <Text text="Source" />
+                        <Text text="{i18n>localCurrency}" />
                     </Column>
                     <Column>
-                        <Text text="Profit Center" />
+                        <Text text="{i18n>globalCurrency}" />
                     </Column>
                     <Column>
-                        <Text text="Cost Center" />
+                        <Text text="{i18n>costCenter}" />
                     </Column>
                     <Column>
-                        <Text text="Business Area" />
+                        <Text text="{i18n>profitCenter}" />
                     </Column>
                     <Column>
-                        <Text text="Division" />
+                        <Text text="{i18n>businessArea}" />
                     </Column>
                     <Column>
-                        <Text text="Functional Area" />
-                    </Column>
-                    <Column hAlign="End">
-                        <Text text="Chart of Accounts" />
-                    </Column>
+                        <Text text="{i18n>functionalArea}" />
+                    </Column>               
+                    <Column>
+                        <Text text="{i18n>source}" />
+                    </Column>     
+
                 </columns>
                 <items>
                     <ColumnListItem >
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{CompanyCode}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{ChartofAccounts}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{Year}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{Period}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{GLAccount}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{AmountLC}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{AmountGC}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{LocalCurrency}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{GlobalCurrency}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{CostCenter}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{ProfitCenter}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
+                            <Text text="{BusinessArea}" />
                         </cells>
                         <cells>
-                            <Text text="abcd" />
-                        </cells>
+                            <Text text="{FunctionalArea}" />
+                        </cells>         
                         <cells>
-                            <Text text="abcd" />
-                        </cells>
+                            <Text text="{Source}" />
+                        </cells>               
                     </ColumnListItem>
                 </items>
             </Table>
@@ -134,10 +140,13 @@
         <f:footer>
             <OverflowToolbar>
                 <ToolbarSpacer/>
-                <Button type="Default" text="Save"/>
+                <Button id="saveButton" type="Emphasized" text="{i18n>saveButton}" press="onSave"/>
+                <Button id="cancelButton" type="Default" text="{i18n>cancelButton}" press="onCancel"/>
             </OverflowToolbar>
         </f:footer>
 
     </f:DynamicPage>
 
 </mvc:View>
+
+

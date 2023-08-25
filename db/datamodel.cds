@@ -29,9 +29,7 @@ context tables {
         key chartOfAccounts : tables.GLAccounts:chartOfAccounts;
     };
 
-    view SourceChartofAccountsView as
-        select distinct
-        sourceAccounts.sourceChartOfAccounts from GLAccounts;
+    view SourceChartofAccountsView as select distinct sourceAccounts.sourceChartOfAccounts from GLAccounts;
 
     entity GLAccountTypesVH : cuid {
         accountType : tables.GLAccounts:accountType;
@@ -40,8 +38,8 @@ context tables {
     @readonly
     @cds.odata.valuelist
     entity SourceChartofAccountsVH {
-        key chartOfAccounts   : tables.GLAccounts:chartOfAccounts;
-        key glaccount   : tables.GLAccounts:glaccount;
+        key chartOfAccounts       : tables.GLAccounts:chartOfAccounts;
+        key glaccount             : tables.GLAccounts:glaccount;
             sourceChartOfAccounts : tables.SourceGLAccounts:sourceChartOfAccounts;
     };
 
@@ -49,7 +47,7 @@ context tables {
         select from GLAccounts {
             *,
             sourceAccounts.sourceChartOfAccounts,
-            sourceAccounts.sourceGLAccount,            
+            sourceAccounts.sourceGLAccount,
             sourceAccounts.sourceDescr,
             sourceAccounts.source
         };
@@ -59,7 +57,20 @@ context tables {
 
 context tbuploadtables {
     entity TrialBalance : cuid {
-        chartOfAccounts : String(4)  @title: 'Chart of Accounts';
-        glaccount       : String(10) @title  : 'GL Account';
+        key companyCode     : String(4)      @title: 'Company Code';
+        key chartOfAccounts : String(4)      @title: 'Chart of Accounts';
+        key year            : String(4)      @title: 'Year';
+        key period          : String(3)      @title: 'Period';
+        key glAccount       : String(10)     @title: 'GL Account';
+            alc             : Decimal(23, 2) @title: 'Amount Local Currency';
+            agc             : Decimal(23, 2) @title: 'Amount Global Currency';
+            lc              : String(3)      @title: 'Local Currency';
+            gc              : String(3)      @title: 'Global Currency';
+            costCenter      : String(10)     @title: 'Cost Center';
+            profitCenter    : String(10)     @title: 'Profit Center';
+            businessArea    : String(4)      @title: 'Business Area';
+            functionalArea  : String(16)     @title: 'Functional Area';
+            source          : String(3)      @title: 'Source';
+
     }
 }
