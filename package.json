@@ -22,7 +22,8 @@
     "watch-glacc": "cds watch --open glacc/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-gridtable": "cds watch --open gridtable/webapp/index.html?sap-ui-xx-viewCache=false",
     "watch-tbupload": "cds watch --open tbupload/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-deminimis": "cds watch --open deminimis/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-deminimis": "cds watch --open deminimis/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-displaybepseligibility": "cds watch --open displaybepseligibility/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "sapux": [
     "app/glaccount",

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="EligibilityService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="EligibilityData" EntityType="EligibilityService.EligibilityData"/>
+            </EntityContainer>
+            <EntityType Name="EligibilityData">
+                <Key>
+                    <PropertyRef Name="THRESHOLD_YEAR"/>
+                    <PropertyRef Name="UPE"/>
+                    <PropertyRef Name="LAND1"/>
+                    <PropertyRef Name="BUTXT"/>
+                    <PropertyRef Name="KTOPL"/>
+                    <PropertyRef Name="CC_CURRENT_YEAR"/>
+                    <PropertyRef Name="CC_YEAR_1"/>
+                    <PropertyRef Name="CC_YEAR_2"/>
+                    <PropertyRef Name="CC_YEAR_3"/>
+                    <PropertyRef Name="CC_BEPS_ELIGIBLE"/>
+                    <PropertyRef Name="THRESHOLD_CURRENCY"/>
+                </Key>
+                <Property Name="THRESHOLD_YEAR" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="UPE" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="LAND1" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="BUTXT" Type="Edm.String" MaxLength="25" Nullable="false"/>
+                <Property Name="KTOPL" Type="Edm.String" MaxLength="4" Nullable="false"/>
+                <Property Name="CC_CURRENT_YEAR" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="CC_YEAR_1" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="CC_YEAR_2" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="CC_YEAR_3" Type="Edm.Decimal" Scale="2" Precision="23" Nullable="false"/>
+                <Property Name="CC_BEPS_ELIGIBLE" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="THRESHOLD_CURRENCY" Type="Edm.String" MaxLength="3" Nullable="false"/>
+            </EntityType>
+            <Annotations Target="EligibilityService.EligibilityData/THRESHOLD_YEAR">
+                <Annotation Term="Common.Label" String="Assesment Year"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/UPE">
+                <Annotation Term="Common.Label" String="Ultimate Parent Entity"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/LAND1">
+                <Annotation Term="Common.Label" String="Country"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/BUTXT">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/KTOPL">
+                <Annotation Term="Common.Label" String="Chart Of Accounts"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/CC_CURRENT_YEAR">
+                <Annotation Term="Common.Label" String="Assessment in EUR"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/CC_YEAR_1">
+                <Annotation Term="Common.Label" String="Year -1 in EUR"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/CC_YEAR_2">
+                <Annotation Term="Common.Label" String="Year -2 in EUR"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/CC_YEAR_3">
+                <Annotation Term="Common.Label" String="Year -3 in EUR"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/CC_BEPS_ELIGIBLE">
+                <Annotation Term="Common.Label" String="BEPS Eligibility"/>
+            </Annotations>
+            <Annotations Target="EligibilityService.EligibilityData/THRESHOLD_CURRENCY">
+                <Annotation Term="Common.Label" String="Currency"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,164 @@
+<mvc:View xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" 
+    xmlns:smartvariants="sap.ui.comp.smartvariants" 
+    xmlns:f="sap.f" 
+    controllerName="displaybepseligibility.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:grid="sap.ui.table"
+    displayBlock="true"
+    xmlns="sap.m">
+    
+    <f:DynamicPage >
+
+        <f:title>
+            <f:DynamicPageTitle>	
+                <f:heading>
+                    <smartvariants:SmartVariantManagement id="svm" persistencyKey="SmartFilter_Explored"/>
+                </f:heading>	
+            </f:DynamicPageTitle>
+        </f:title>
+
+        <f:header>
+				<f:DynamicPageHeader>
+					<f:content>
+						<smartfilterbar:SmartFilterBar 
+                                        id="smartFilter"
+                                        entitySet="EligibilityData"
+                                        search="onSearch"
+                                        smartVariant="svm"
+                                        persistencyKey="SmartFilter_Explored"
+                                        width="100%">               
+                        <smartfilterbar:controlConfiguration>
+                        <smartfilterbar:ControlConfiguration 
+                                        key="THRESHOLD_YEAR"
+                                        visibleInAdvancedArea="true"
+                                        label="Assesment Year">                                        
+                        </smartfilterbar:ControlConfiguration>
+                        <smartfilterbar:ControlConfiguration 
+                                        key="LAND1"
+                                        visibleInAdvancedArea="true"
+                                        label="Country">
+                        </smartfilterbar:ControlConfiguration>                    
+                        </smartfilterbar:controlConfiguration>
+                    </smartfilterbar:SmartFilterBar>
+					</f:content>
+				</f:DynamicPageHeader>
+			</f:header>
+
+        <f:content>
+                
+				<grid:Table
+                    id="gridTable"
+                    enableCellFilter="true"
+                    rows="{
+                        path: '/EligibilityData',
+                        sorter: {
+                            path : 'LAND1'
+                        }                        
+                    }"                                        
+                    fixedColumnCount="3"
+                    enableColumnReordering="true"
+                    selectionMode="Single" 
+                    alternateRowColors="true" 
+                    visibleRowCount="12"
+                    selectionBehavior="RowOnly"
+                    enableSelectAll="false"
+                    rowSelectionChange="onRowSelected"  
+                    rowsUpdated=".onRowsUpdated"                  
+                >                                                        
+
+                <grid:extension>
+                    <OverflowToolbar style="Clear">
+                        <Title text="Eligibility Data"></Title>
+                        <ToolbarSpacer />
+                        <Button icon="sap-icon://download" press="onExport"/>
+                    </OverflowToolbar>
+                    	
+                </grid:extension>
+                
+                <grid:columns>    
+                    <grid:Column autoResizable="true" width="5.5rem" sortProperty="THRESHOLD_YEAR">
+                        <Text text="Assesment Year"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{THRESHOLD_YEAR}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>                                    
+
+                    <grid:Column autoResizable="true" width="5rem" sortProperty="UPE">
+                        <Text text="UPE"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{UPE}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>   
+                    
+                    <grid:Column autoResizable="true" width="4.5rem" sortProperty="LAND1">
+                        <Text text="Country"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{LAND1}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>                 
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="BUTXT">
+                        <Text text="Description"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{BUTXT}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="KTOPL">
+                        <Text text="Chart Of Accounts"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{KTOPL}"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="CC_CURRENT_YEAR">
+                        <Text text="Assessment in EUR"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'CC_CURRENT_YEAR', formatter: '.formatValue' }"></ObjectIdentifier>                            
+                        </grid:template>
+                    </grid:Column>            
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="CC_YEAR_1">
+                        <Text text="Year -1 in EUR"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'CC_YEAR_1', formatter: '.formatValue' }"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column> 
+
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="CC_YEAR_2">
+                        <Text text="Year -2 in EUR"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'CC_YEAR_2', formatter: '.formatValue' }"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>                       
+                    
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="CC_YEAR_3">
+                        <Text text="Year -3 in EUR"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{ path: 'CC_YEAR_3', formatter: '.formatValue' }"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>                                       
+
+                    <grid:Column autoResizable="true" width="6rem" sortProperty="THRESHOLD_CURRENCY" >
+                        <Text text="Currency"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{THRESHOLD_CURRENCY}" class="bold"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                    <grid:Column autoResizable="true" width="6rem" sortProperty="CC_BEPS_ELIGIBLE" >
+                        <Text text="BEPS Eligibility"/>
+                        <grid:template>
+                            <ObjectIdentifier text="{CC_BEPS_ELIGIBLE}" class="bold"></ObjectIdentifier>
+                        </grid:template>
+                    </grid:Column>
+
+                </grid:columns>
+                 
+				</grid:Table>
+			</f:content>
+        
+
+    </f:DynamicPage>
+
+</mvc:View>

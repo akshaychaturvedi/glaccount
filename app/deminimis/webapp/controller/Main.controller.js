@@ -1,11 +1,12 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/core/format/NumberFormat"
+    "sap/ui/core/format/NumberFormat",
+    "sap/ui/export/Spreadsheet",
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, NumberFormat) {
+    function (Controller, NumberFormat, Spreadsheet) {
         "use strict";
 
         return Controller.extend("deminimis.controller.Main", {

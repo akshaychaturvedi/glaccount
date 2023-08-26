@@ -1,0 +1,13 @@
+/* Enter your custom styles here */
+.rowExclusionFalse {
+    background-color: #FFE9E9 !important;
+}
+.rowExclusionTrue {
+    background: #EEFCF3 !important;
+}
+.bold.sapMObjectIdentifier {
+
+    font-weight: bold !important;
+    color: #0c1408;
+
+}
