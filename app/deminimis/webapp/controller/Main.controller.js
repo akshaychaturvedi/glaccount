@@ -118,7 +118,7 @@ sap.ui.define([
             //       }, this);
 
             // },
-            onRowSelected: function(oEvent){
+            onRowSelected1: function(oEvent){
                 var oContext = oEvent.getParameter('rowContext');
                 var oObject = oContext.getObject();
                 var sPath = oEvent.getParameter('rowContext').getPath();
@@ -160,7 +160,7 @@ sap.ui.define([
                 }
                 return iValue.toString();
             },
-            onRowsUpdated: function (oEvent) {
+            onRowsUpdated1: function (oEvent) {
                 console.log('Row updated');
                 let oView = this.getView();
                 let oTable = oView.byId("gridTable");

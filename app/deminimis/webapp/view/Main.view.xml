@@ -123,66 +123,101 @@
                         </grid:template>
                     </grid:Column>                  
 
-                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR">
-                        <Text text="GLoBE Revenue Year"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR" headerSpan="4">
+                        <!-- <Text text="GLoBE Revenue Year"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Revenue" textAlign="Center" width="100%"/>
+							<Label text="Year" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'REV_YEAR', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'REV_YEAR', formatter: '.formatValue' }" state="Indication07"></ObjectStatus>
                         </grid:template>
                     </grid:Column>
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR1">
-                        <Text text="GLoBE Revenue Year 1"/>
+                        <!-- <Text text="GLoBE Revenue Year 1"/> -->
+                        <grid:multiLabels>
+							<Label design="Bold" text="GLoBE Revenue"/>
+							<Label text="Year 1" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'REV_YEAR1', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'REV_YEAR1', formatter: '.formatValue' }" state="Indication07"></ObjectStatus>
                         </grid:template>
                     </grid:Column>
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_YEAR2">
-                        <Text text="GLoBE Revenue Year 2"/>
+                        <!-- <Text text="GLoBE Revenue Year 2"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Revenue"/>
+							<Label text="Year 2" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'REV_YEAR2', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'REV_YEAR2', formatter: '.formatValue' }" state="Indication07"></ObjectStatus>
                         </grid:template>
                     </grid:Column>    
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="REV_AVG">
-                        <Text text="GLoBE Revenue Average"/>
+                        <!-- <Text text="GLoBE Revenue Average"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Revenue"/>
+							<Label text="Average" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'REV_AVG', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'REV_AVG', formatter: '.formatValue' }" state="Indication07"></ObjectStatus>
                         </grid:template>
                     </grid:Column>    
 
-                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR">
-                        <Text text="GLoBE Income/Loss Year"/>
+                    <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR" headerSpan="4">
+                        <!-- <Text text="GLoBE Income/Loss Year"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Income/Loss" textAlign="Center" width="100%"/>
+							<Label text="Year" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'INC_YEAR', formatter: '.formatValue' }"></ObjectIdentifier>                            
+                            <ObjectStatus text="{ path: 'INC_YEAR', formatter: '.formatValue' }" ></ObjectStatus>                            
                         </grid:template>
                     </grid:Column>            
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR1">
-                        <Text text="GLoBE Income/Loss Year 1"/>
+                        <!-- <Text text="GLoBE Income/Loss Year 1"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Income/Loss"/>
+							<Label text="Year 1" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'INC_YEAR1', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'INC_YEAR1', formatter: '.formatValue' }" ></ObjectStatus>
                         </grid:template>
                     </grid:Column> 
 
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_YEAR2">
-                        <Text text="GLoBE Income/Loss Year 2"/>
+                        <!-- <Text text="GLoBE Income/Loss Year 2"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Income/Loss"/>
+							<Label text="Year 2" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'INC_YEAR2', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'INC_YEAR2', formatter: '.formatValue' }" ></ObjectStatus>
                         </grid:template>
                     </grid:Column>                       
                     
                     <grid:Column autoResizable="true" width="8.5rem" sortProperty="INC_AVG">
-                        <Text text="GLoBE Income/Loss Average"/>
+                        <!-- <Text text="GLoBE Income/Loss Average"/> -->
+                        <grid:multiLabels>
+							<Label text="GLoBE Income/Loss"/>
+							<Label text="Average" textAlign="Center" width="100%"/>
+						</grid:multiLabels>
                         <grid:template>
-                            <ObjectIdentifier text="{ path: 'INC_AVG', formatter: '.formatValue' }"></ObjectIdentifier>
+                            <ObjectStatus text="{ path: 'INC_AVG', formatter: '.formatValue' }" ></ObjectStatus>
                         </grid:template>
-                    </grid:Column>                                       
+                    </grid:Column>                                    
 
                     <grid:Column autoResizable="true" width="6rem" sortProperty="EXCLUSION" >
                         <Text text="DeMinimis Exclusion"/>
                         <grid:template>
-                            <ObjectIdentifier text="{= ${EXCLUSION} === true ? 'Yes' : 'No'}" class="bold"></ObjectIdentifier>
+                            <tnt:InfoLabel  text="{= ${EXCLUSION} === true ? 'Yes' : 'No'}" 
+                                            colorScheme="{= ${EXCLUSION} === true ? 8 : 2}" 
+                                            icon="{= ${EXCLUSION} === true ? 'sap-icon://sys-enter-2' : 'sap-icon://error'}"></tnt:InfoLabel>
+                            <!-- <ObjectStatus text="{= ${EXCLUSION} === true ? 'Yes' : 'No'}" state="{= ${EXCLUSION} === true ? 'Success' : 'Error'}"></ObjectStatus> -->
                         </grid:template>
                     </grid:Column>
 
